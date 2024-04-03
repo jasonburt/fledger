@@ -1,0 +1,16 @@
+# Logs
+logs
+*.log
+creds.tmp
+/tmp*
+*.tmp
+venv/
+tmp/
+.venv
+tmp
+.pytest_cache
+
+__pycache__/
+# Firebase cache
+.obsidian/
+
