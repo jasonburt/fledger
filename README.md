@@ -28,6 +28,15 @@ fletcher build-standards openSSFBestPractices
 This will generate an output in the /standards folder with the following files.
 - Overview Gap Analysis
 
+After checking the matrx in folder (x) write some code and commit and run command.
+```sh
+git add .
+git commit -m "Privacy Standards update"
+fletcher update-standards
+```
+
+
+
 
 ### Help and additional Commands
 
