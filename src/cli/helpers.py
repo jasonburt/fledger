@@ -55,3 +55,23 @@ def mixin_skill_assesment_details(standards_list):
         print(row)
         row.update(merge)
     return standards_list
+
+def mixin_project_assesment_details(standards_list):
+    merge = {'language':'','example':'','notes':''}
+    for row in standards_list:
+        print(row)
+        row.update(merge)
+    return standards_list
+
+def flatten_categories(data):
+    flattened = []
+    for category in data['categories']:
+        for subcategory in category['subcategories']:
+            flattened_item = {
+                'category_name': category['name'],
+                'subcategory_name': subcategory['name'],
+                'num_requirements': subcategory['numRequirements'],
+                'requirements': subcategory['requirements']
+            }
+            flattened.append(flattened_item)
+    return flattened
