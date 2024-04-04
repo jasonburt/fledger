@@ -38,10 +38,13 @@ After checking the matrix in folder (x) write some code and commit and run comma
 ```sh
 git add .
 git commit -m "Privacy Standards update"
-fletcher update-standards
+fletcher update-skill-assement
 ```
 
-
+After a general commit to check the project status simply run.
+```sh
+fletcher update-project-assement
+```
 
 
 ### Help and additional Commands

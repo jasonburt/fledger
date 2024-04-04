@@ -1,4 +1,5 @@
 import json, os
+import subprocess
 
 def json_to_markdown_table(json_data):
     """
@@ -75,3 +76,49 @@ def flatten_categories(data):
             }
             flattened.append(flattened_item)
     return flattened
+
+""" Search, runs a git grep search for the function returning location of checked in code
+"""
+def search_term(term,repo_path):
+    base_dir = os.getcwd()
+    process = subprocess.Popen(['git', 'grep', '--text', '-n',term],
+        stdout=subprocess.PIPE, 
+        stderr=subprocess.PIPE)
+    results_list = []
+    results_clean_list = []
+    while True:
+        output = process.stdout.readline()
+        try:
+            results_list.append(output.strip().decode("utf-8") )
+        except:
+            print('failed append result')
+            print(output.strip())
+        # Do something else
+        return_code = process.poll()
+        if return_code is not None:
+            # print('RETURN CODE', return_code)
+            # Process has finished, read rest of the output 
+            # for output in process.stdout.readlines():
+            #   print('last of output')
+            #   print(output.strip())
+            break
+    for thing in results_list:
+        if '' == thing:
+            continue
+        path_and_file = thing.split(':')[0]
+        location = thing.split(':')[1]
+        sub_string = thing.replace(path_and_file+':','').replace(location+':','')
+        # Good to see if its called somehow else here
+        item = {'path_and_file':path_and_file,'location':location,'code':sub_string, 'tags': [],'usage':''}
+        if 'def' in item['code']:
+            item['tags'].append('build')
+            item['usage'] = 'build'
+        if '=' in item['code']:
+            item['tags'].append('call')
+            item['usage'] = 'call'
+        if 'test' in item['path_and_file']:
+            item['tags'].append('test')
+            item['usage'] = 'test'
+        results_clean_list.append(item)
+    os.chdir(base_dir)
+    return results_clean_list

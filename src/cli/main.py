@@ -48,5 +48,12 @@ def build_project_assessment(name: str):
     markdown = helpers.json_to_markdown_table(project_assessment_matrix)
     helpers.open_write('/assessments/project/overview_project_matrix.md',markdown)
 
+#python cli/main.py search
+@app.command()
+def search(search: str, repo_path: str = ''):
+	"Searches for a specific term in a repo."
+	results = helpers.search_term(search, repo_path)
+	print(results)
+
 if __name__ == "__main__":
 	app()
