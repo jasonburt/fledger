@@ -1,1 +1,5 @@
-[{"update":"me"}]
+[
+	{"Category":"Documentation",
+	"Sub Category":"Detailed",
+	"Description":"The project MUST provide basic documentation for the software produced by the project."}
+]

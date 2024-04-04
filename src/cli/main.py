@@ -1,6 +1,7 @@
 import typer
 from typing import Optional
 import helpers
+import json
 
 app = typer.Typer(no_args_is_help=True)
 
@@ -11,25 +12,30 @@ def hello(name: str):
 
 #python src/cli/main.py build-standards openssf
 @app.command()
-def build_assesment(name: str):
-    "Builds assessment using standards passed"
+def build_skill_assesment(name: str):
+    "Builds skill assessment using standards passed."
     print(f"Building Standards in /standards folder {name}")
     #TODO standards index
     # Open Standards
     file_and_path = 'tests/data/openssf_example.json'
     #Convert to markdown
     with open(file_and_path, 'r', encoding='utf-8') as file:
-    	standards_json = file.read()
-    
+    	standards_json = json.load(file)
     #TODO: Discovery functions
     print(standards_json)
-    markdown = helpers.json_to_markdown_table(standards_json)
-    helpers.open_write('/assessments/oveview_gap_analysis.md',markdown)
+    skills_assment_matrix = helpers.mixin_skill_assesment_details(standards_json)
+    markdown = helpers.json_to_markdown_table(skills_assment_matrix)
+    helpers.open_write('/assessments/user/overview_skills_and_project_matrix.md',markdown)
 
 @app.command()
-def build_standards(name: str):
-    "Builds standards in the standards file."
+def update_skill_assesment(name: str):
+    "Updates skill assessment using standards passed."
     print(f"Building Standards in /standards folder {name}")
+
+@app.command()
+def build_standards_assesment(name: str):
+    "Builds repo standards assessment in the standards file."
+    print(f"Building Standards in /assments/project folder {name}")
 
 if __name__ == "__main__":
 	app()

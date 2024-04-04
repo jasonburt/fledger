@@ -48,3 +48,10 @@ def open_write(file_path,data):
     f.write(data)
     f.close()
     return file_path
+
+def mixin_skill_assesment_details(standards_list):
+    merge = {'language':'','example':'','notes':''}
+    for row in standards_list:
+        print(row)
+        row.update(merge)
+    return standards_list
