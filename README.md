@@ -25,7 +25,7 @@ Do an assessment scan of the project to see if its up to [OSS Standards](https:/
 fletcher build-project-assesment openSSFBestPractices
 ```
 
-This will generate an output in the /standards folder with the following files.
+This will generate an output in the /assements folder with the following files.
 
 Create a user skills and project matrix using the standard.
 

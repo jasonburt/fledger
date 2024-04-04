@@ -46,7 +46,7 @@ def build_project_assessment(name: str):
     project_assessment_matrix = helpers.mixin_project_assessment_details(project_assment_matrix)
     #TODO: Discovery functions
     markdown = helpers.json_to_markdown_table(project_assessment_matrix)
-    helpers.open_write('/assessments/project/overview_skills_and_project_matrix.md',markdown)
+    helpers.open_write('/assessments/project/overview_project_matrix.md',markdown)
 
 if __name__ == "__main__":
 	app()
