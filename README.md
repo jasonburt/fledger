@@ -22,7 +22,7 @@ git checkout xxx project
 
 Do an assessment scan of the project to see if its up to [OSS Standards](https://www.bestpractices.dev/en/criteria/0?details=true&rationale=true).
 ```sh
-fletcher build-project-assesment openSSFBestPractices
+fledger build-project-assesment openSSFBestPractices
 ```
 
 This will generate an output in the /assements folder with the following files.
@@ -31,19 +31,19 @@ Create a user skills and project matrix using the standard.
 
 Do an assessment scan of the project to see if its up to [OSS Standards](https://www.bestpractices.dev/en/criteria/0?details=true&rationale=true).
 ```sh
-fletcher build-skill-assesment openSSFBestPractices
+fledger build-skill-assesment openSSFBestPractices
 ```
 
 After checking the matrix in folder (x) write some code and commit and run command.
 ```sh
 git add .
 git commit -m "Privacy Standards update"
-fletcher update-skill-assement
+fledger update-skill-assement
 ```
 
 After a general commit to check the project status simply run.
 ```sh
-fletcher update-project-assement
+fledger update-project-assement
 ```
 
 
