@@ -9,6 +9,24 @@ Fledger is a Python Framework that simplifies software engineering and developme
 - Release Notes
 - Security
 
+### Who is this for?
+Status (Verified) is confirmed by multiple people added to the repo. Quotes TBD. (FEEDBACK TBD) is in the pipeline.
+
+
+- Engineering Job Seekers
+  - Use best in class standards and opensource code bases to learn
+  - Have actual records of your work
+  - Have a structured guide to help you 
+- Technical Startup founders, Engineering Managers trying to improve their hiring process.
+  - Building Rubrics, Scores, and allignment can take weeks. - (Verified)
+  - Reduce Scoring and Feedback time - (Verified)
+- Opensource founders
+  - Use it to get started correctly just getting started can take 2+ weeks to it right. - (Verified)
+  - Use it to assess and get the help you need on your project (FEEDBACK TBD)
+- Security & Compliance Teams
+  - Use it to reduce friction and drive adoption for training requirements, interviews, and other relevant areas. (FEEDBACK TBD)
+
+
 ### Getting Started
 
 ```sh
