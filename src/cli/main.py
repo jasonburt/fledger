@@ -10,7 +10,7 @@ def hello(name: str):
     "Connect with the project at .... url."
     print(f"Hello {name}")
 
-#python src/cli/main.py build-standards openssf
+#python src/cli/main.py build-skill-assessment openssf
 @app.command()
 def build_skill_assessment(name: str):
     "Builds skill assessment using standards passed."

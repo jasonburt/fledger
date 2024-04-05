@@ -50,14 +50,14 @@ def open_write(file_path,data):
     f.close()
     return file_path
 
-def mixin_skill_assesment_details(standards_list):
+def mixin_skill_assessment_details(standards_list):
     merge = {'language':'','example':'','notes':''}
     for row in standards_list:
         print(row)
         row.update(merge)
     return standards_list
 
-def mixin_project_assesment_details(standards_list):
+def mixin_project_assessment_details(standards_list):
     merge = {'language':'','example':'','notes':''}
     for row in standards_list:
         print(row)
