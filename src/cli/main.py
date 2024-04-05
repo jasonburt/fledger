@@ -48,12 +48,20 @@ def build_project_assessment(name: str):
     markdown = helpers.json_to_markdown_table(project_assessment_matrix)
     helpers.open_write('/assessments/project/overview_project_matrix.md',markdown)
 
-#python src/cli/main.py search README --repo-path=Your/Cool/Repo
+#python src/cli/main.py search README --repo-path=Your/Cool/Repo --search-type=README
+#python src/cli/main.py search 'README*' --search-type=file
 @app.command()
-def search(search: str, repo_path: str = ''):
+def search(search: str, repo_path: str = '', search_type: str = 'code'):
 	"Searches for a specific term in a repo."
-	results = helpers.search_term(search, repo_path)
-	print(results)
+	if search_type == 'code':
+		results = helpers.search_term(search, repo_path)
+	if search_type == 'file':
+		print('FILE')
+		results = helpers.search_files(search,repo_path)
+	try:
+		print(results)
+	except:
+		print('no search_type passed')
 
 if __name__ == "__main__":
 	app()

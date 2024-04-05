@@ -77,13 +77,47 @@ def flatten_categories(data):
             flattened.append(flattened_item)
     return flattened
 
-""" Search, runs a git grep search for the function returning location of checked in code
-"""
+def search_files(term,repo_path):
+    base_dir = os.getcwd()
+    if repo_path and repo_path != '':
+        base_dir = repo_path
+    print('git ls-files '+term)
+    process = subprocess.Popen(['git', 'ls-files',term,], cwd=base_dir,
+        stdout=subprocess.PIPE, 
+        stderr=subprocess.PIPE)
+    results_list = []
+    results_clean_list = []
+    while True:
+        output = process.stdout.readline()
+        try:
+            results_list.append(output.strip().decode("utf-8") )
+        except:
+            print('failed append result')
+            print(output.strip())
+        # Do something else
+        return_code = process.poll()
+        if return_code is not None:
+            # print('RETURN CODE', return_code)
+            # Process has finished, read rest of the output 
+            # for output in process.stdout.readlines():
+            #   print('last of output')
+            #   print(output.strip())
+            break
+    for thing in results_list:
+        item = {'path_and_file':thing,'location':'','code':'', 'tags': [],'usage':''}
+        if '.md' in item['path_and_file']:
+            item['tags'].append('build')
+            item['usage'] = 'build'
+        results_clean_list.append(item)
+    os.chdir(base_dir)
+    return results_clean_list
+
+
 def search_term(term,repo_path):
     base_dir = os.getcwd()
     if repo_path and repo_path != '':
         base_dir = repo_path
-    process = subprocess.Popen(['git', 'grep', '--text', '-n',term,], cwd=base_dir,
+    process = subprocess.Popen(['git', 'grep', '--text', '-n', '-f',term,], cwd=base_dir,
         stdout=subprocess.PIPE, 
         stderr=subprocess.PIPE)
     results_list = []
