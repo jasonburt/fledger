@@ -1,0 +1,22 @@
+{
+  "standardsSet": "TwilioAITrust",
+  "projectType": "AI",
+  "desciription": "https://www.twilio.com/en-us/blog/customer-ai-trust-principles-privacy-framework",
+  "grade": "Passing",
+  "numCategories": "1",
+  "categories": [
+    {
+      "name": "Basics",
+      "numSubCategories": "1",
+      "subcategories": [
+        {
+            "name": "Base Model & Type",
+            "numRequirements": "4",
+            "requirements": ["What version of model is the functionality is built on. For example...",
+                            "Describes what kind of AI model is being used. For example a Generative AI model vs a Predictive AI model",
+                            "",
+                            ""
+                            ]
+        }]
+      }]
+}
