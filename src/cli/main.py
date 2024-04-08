@@ -34,8 +34,8 @@ def update_skill_assessment(name: str):
     "Updates skill assessment using standards passed."
     print(f"Building Standards in /standards folder {name}")
 
-#python src/cli/main.py build-project-assessment openssf
-#python src/cli/main.py build-project-assesment OpenSSF_Standards_Passing
+#python src/cli/main.py build-project-assessment TwilioAITRust
+#python src/cli/main.py build-project-assessment OpenSSF_Standards_Passing
 @app.command()
 def build_project_assessment(name: str):
     "Builds repo standards assessment in the standards file."
@@ -62,7 +62,9 @@ def search(search: str, repo_path: str = '', search_type: str = 'code', save: bo
 	if search_type == 'file':
 		results = helpers.search_files(search,repo_path)
 	if results:
-		print(json.dumps(results,indent=4))
+		#TODO: For long files show short list.
+		print(len(results)+' records found. First record below.')
+		print(json.dumps(results[0],indent=4))
 	else:
 		print('No results found, change search paramaters.')
 	if save:
