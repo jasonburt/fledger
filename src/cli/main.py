@@ -60,7 +60,10 @@ def search(search: str, repo_path: str = '', search_type: str = 'code', save: bo
 		results = helpers.search_term(search, repo_path)
 	if search_type == 'file':
 		results = helpers.search_files(search,repo_path)
-	print(results)
+	if results:
+		print(results)
+	else:
+		print('error')
 	if save:
 			#TODO fix this
 			name = search
