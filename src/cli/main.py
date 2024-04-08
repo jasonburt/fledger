@@ -62,7 +62,7 @@ def search(search: str, repo_path: str = '', search_type: str = 'code', save: bo
 	if search_type == 'file':
 		results = helpers.search_files(search,repo_path)
 	if results:
-		print(results)
+		print(json.dumps(results,indent=4))
 	else:
 		print('No results found, change search paramaters.')
 	if save:
