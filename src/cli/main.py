@@ -35,12 +35,13 @@ def update_skill_assessment(name: str):
     print(f"Building Standards in /standards folder {name}")
 
 #python src/cli/main.py build-project-assessment openssf
+#python src/cli/main.py build-project-assesment OpenSSF_Standards_Passing
 @app.command()
 def build_project_assessment(name: str):
     "Builds repo standards assessment in the standards file."
     print(f"Building Standards in /assments/project folder {name}")
     # Open Standards
-    file_and_path = 'tests/data/OpenSSF_Standards_Passing.json'
+    file_and_path = 'tests/data/'+name+'.json'
     #Convert to markdown
     with open(file_and_path, 'r', encoding='utf-8') as file:
     	standards_json = json.load(file)
@@ -63,7 +64,7 @@ def search(search: str, repo_path: str = '', search_type: str = 'code', save: bo
 	if results:
 		print(results)
 	else:
-		print('error')
+		print('No results found, change search paramaters.')
 	if save:
 			#TODO fix this
 			name = search
