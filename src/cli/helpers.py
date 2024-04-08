@@ -120,7 +120,7 @@ def search_term(term,repo_path):
     print('git grep --text -n -f '+term)
     if repo_path and repo_path != '':
         base_dir = repo_path
-    process = subprocess.Popen(['git', 'grep', '--text', '-n', '-f',term,], cwd=base_dir,
+    process = subprocess.Popen(['git', 'grep', '--text', '-n',term,], cwd=base_dir,
         stdout=subprocess.PIPE, 
         stderr=subprocess.PIPE)
     results_list = []
