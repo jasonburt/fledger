@@ -1,4 +1,4 @@
-import json, os
+import json, os, re
 import subprocess
 
 def json_to_markdown_table(json_data):
@@ -163,6 +163,8 @@ def record_struct(name, search,records):
     # Merge First
     language ='general'
     record_type = ''
+    name = re.sub('[^A-Za-z0-9]+', '', name)
+    name = name+'_file_check'
     save_path = '/rubric/'+language+'/'+name+'.json'
     record_struct = {'name':name,'pattern': search, 'type':record_type,'description':'','records':[records]}
     record_struct = json.dumps(record_struct, indent=4)

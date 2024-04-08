@@ -52,6 +52,7 @@ def build_project_assessment(name: str):
 
 #python src/cli/main.py search README --repo-path=Your/Cool/Repo --search-type=README
 #python src/cli/main.py search 'README*' --search-type=file
+#python src/cli/main.py search 'README*' --search-type=file -save
 @app.command()
 def search(search: str, repo_path: str = '', search_type: str = 'code', save: bool = False):
 	"Searches for a specific term in a repo."

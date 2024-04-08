@@ -1,5 +1,5 @@
 {
-    "name": "README*",
+    "name": "README_file_check",
     "pattern": "README*",
     "type": "",
     "description": "",
@@ -13,20 +13,6 @@
                     "build"
                 ],
                 "usage": "build"
-            },
-            {
-                "path_and_file": "",
-                "location": "",
-                "code": "",
-                "tags": [],
-                "usage": ""
-            },
-            {
-                "path_and_file": "",
-                "location": "",
-                "code": "",
-                "tags": [],
-                "usage": ""
             },
             {
                 "path_and_file": "",
