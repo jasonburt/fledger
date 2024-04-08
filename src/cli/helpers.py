@@ -124,3 +124,24 @@ def search_term(term,repo_path):
         results_clean_list.append(item)
     os.chdir(base_dir)
     return results_clean_list
+
+
+"""
+Converts a provided markdown file (e.g. the output from json_to_markdown) and converts it back to JSON and stores it in the 
+pathway provided as the second argument.
+"""
+def mrkd2json(inp, outfile_path):
+    lines = inp.split('\n')
+    ret=[]
+    keys=[]
+    for i,l in enumerate(lines):
+        if i==0:
+            keys=[_i.strip() for _i in l.split('|')]
+        elif i==1: continue
+        else:
+            ret.append({keys[_i]:v.strip() for _i,v in enumerate(l.split('|')) if  _i>0 and _i<len(keys)-1})
+    outfile = open(outfile_path, "w")
+    json.dump(ret, outfile, indent=4)
+    outfile.close()
+    #return json.dumps(ret, indent = 4) 
+    #print(mrkd2json(my_str))    
