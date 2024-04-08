@@ -1,6 +1,14 @@
 import json, os, re
 import subprocess
 
+
+def check_project_settings():
+    #Adding project settings over and over is a pain, so can we cconfigure with ENV or Setup file?
+    # Environment Variable
+    repo_path = os.environ['fledger_project_path']
+    #Configuration
+    return repo_path
+
 def json_to_markdown_table(json_data):
     """
     Converts a JSON object to a Markdown table.
