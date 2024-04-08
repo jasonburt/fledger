@@ -2,6 +2,7 @@ import json
 import os
 import re
 import subprocess
+from pathlib import Path
 
 
 def check_project_settings():
@@ -50,17 +51,14 @@ def json_to_markdown_table(json_data):
     return markdown_table
 
 
-def open_write(file_path, data):
-    if '/' in file_path[0]:
-        file_path = file_path[1:]
-    folder_path = os.path.dirname(file_path)
-    print(folder_path)
+def open_write(file_path: Path, data):
+    file_path.parent.mkdir(parents=True, exist_ok=True)
 
-    if not os.path.exists(folder_path):
-        os.makedirs(folder_path)
-    f = open(file_path, "w")
-    f.write(data)
-    f.close()
+    print(f"{file_path.name} was saved to {file_path.parent}")
+
+    with open(file_path, "w") as f:
+        f.write(data)
+
     return file_path
 
 
@@ -71,6 +69,7 @@ def mixin_skill_assessment_details(standards_list):
         'rubric_notes': '',
         'general_notes': ''
     }
+
     for row in standards_list:
         print(row)
         row.update(merge)
@@ -221,7 +220,7 @@ def record_struct(name, search, records):
     record_type = ''
     name = re.sub('[^A-Za-z0-9]+', '', name)
     name = name + '_file_check'
-    save_path = '/rubric/' + language + '/' + name + '.json'
+    save_path = Path('./rubric/') / language / f"{name}.json"
     record_struct = {
         'name': name,
         'pattern': search,

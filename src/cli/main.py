@@ -1,4 +1,5 @@
 import json
+from pathlib import Path
 from typing import Optional
 
 import helpers
@@ -22,7 +23,7 @@ def build_skill_assessment(name: str):
     print(f"Building Standards in /standards folder {name}")
     #TODO standards index
     # Open Standards
-    file_and_path = 'tests/data/OpenSSF_Standards_Passing.json'
+    file_and_path = Path('tests/data/OpenSSF_Standards_Passing.json')
 
     #Convert to markdown
     with open(file_and_path, 'r', encoding='utf-8') as file:
@@ -34,7 +35,8 @@ def build_skill_assessment(name: str):
         skills_assment_matrix)
     markdown = helpers.json_to_markdown_table(skills_assment_matrix)
     helpers.open_write(
-        '/assessments/user/overview_skills_and_project_matrix.md', markdown)
+        Path('./assessments/user/overview_skills_and_project_matrix.md'),
+        markdown)
 
 
 @app.command()
@@ -48,9 +50,9 @@ def update_skill_assessment(name: str):
 @app.command()
 def build_project_assessment(name: str):
     "Builds repo standards assessment in the standards file."
-    print(f"Building Standards in /assments/project folder {name}")
+    print(f"Building Standards in /assessments/project folder {name}")
     # Open Standards
-    file_and_path = 'tests/data/' + name + '.json'
+    file_and_path = Path('./tests/data/') / f"{name}.json"
     #Convert to markdown
     with open(file_and_path, 'r', encoding='utf-8') as file:
         standards_json = json.load(file)
@@ -59,13 +61,13 @@ def build_project_assessment(name: str):
         project_assment_matrix)
     #TODO: Discovery functions
     markdown = helpers.json_to_markdown_table(project_assessment_matrix)
-    helpers.open_write('/assessments/project/overview_project_matrix.md',
+    helpers.open_write(Path('/assessments/project/overview_project_matrix.md'),
                        markdown)
 
 
 #python src/cli/main.py search README --repo-path=Your/Cool/Repo --search-type=README
 #python src/cli/main.py search 'README*' --search-type=file
-#python src/cli/main.py search 'README*' --search-type=file -save
+#python src/cli/main.py search 'README*' --search-type=file --save
 @app.command()
 def search(search: str,
            repo_path: str = '',
@@ -81,12 +83,12 @@ def search(search: str,
         print(len(results) + ' records found. First record below.')
         print(json.dumps(results[0], indent=4))
     else:
-        print('No results found, change search paramaters.')
+        print('No results found, change search parameters.')
     if save:
         #TODO fix this
         name = search
         save_path = helpers.record_struct(name, search, results)
-        print('Record Recorded at ' + save_path)
+        print(f"Record Recorded at {save_path}")
 
 
 if __name__ == "__main__":
