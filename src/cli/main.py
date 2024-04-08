@@ -29,7 +29,7 @@ def build_skill_assessment(name: str):
     helpers.open_write('/assessments/user/overview_skills_and_project_matrix.md',markdown)
 
 
-#python src/cli/main.py update-project-assessment documentation detailed search README
+#python src/cli/main.py update-skill-assessment documentation detailed search README
 @app.command()
 def update_skill_assessment(category: str, subcat: str, command: str, term: str, repo_path: str=''):
     "Updates skill assessment using standards passed."
@@ -56,12 +56,12 @@ def update_skill_assessment(category: str, subcat: str, command: str, term: str,
 
     #build the file directory for the evidence gathered 
     for item in new_data:
-        evidence_str += "\n|- Item " + str(evidence_count)
+        evidence_str += "\n+--Item " + str(evidence_count)
         evidence_count += 1
-        evidence_str = evidence_str + "\n|- - "
+        #evidence_str = evidence_str + "\n|- - "
         for key in item:
-            evidence_str = evidence_str + "\n|- - " + key
-            evidence_str = evidence_str + "\n|- - - " + str(item[key])
+            evidence_str = evidence_str + "\n|\t+-- " + key
+            evidence_str = evidence_str + "\n|\t\t+--- " + str(item[key])
             #print(f"Key: {key}, Value: {item[key]}")
     #print(evidence_str)
 
@@ -71,7 +71,7 @@ def update_skill_assessment(category: str, subcat: str, command: str, term: str,
             print(evidence_str)
             content['example'] = "hello :)"
             #the below method is not currently writing to the md file for some reason. It simply leaves content['example'] as blank
-            #content['example'] = evidence_str 
+            content['example'] = evidence_str 
 
     #convert our intermediary JSON data back to its proper .md file format
     markdown = helpers.json_to_markdown_table(data)
