@@ -6,9 +6,9 @@ import json
 app = typer.Typer(no_args_is_help=True)
 
 @app.command()
-def hello(name: str):
-    "Connect with the project at .... url."
-    print(f"Hello {name}")
+def getting_started(name: str):
+    "Getting Started"
+    print(f"Hello! Welcome to fledger! To get started read the README for a list of example and connect with the project at https://github.com/jasonburt/fledger.")
 
 #python src/cli/main.py build-skill-assessment openssf
 @app.command()
