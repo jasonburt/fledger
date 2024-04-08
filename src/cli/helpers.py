@@ -51,14 +51,14 @@ def open_write(file_path,data):
     return file_path
 
 def mixin_skill_assessment_details(standards_list):
-    merge = {'language':'','example':'','notes':''}
+    merge = {'language':'','example':'','rubric_notes':'','general_notes':''}
     for row in standards_list:
         print(row)
         row.update(merge)
     return standards_list
 
 def mixin_project_assessment_details(standards_list):
-    merge = {'language':'','example':'','notes':''}
+    merge = {'language':'','example':'','rubric_notes':'','general_notes':''}
     for row in standards_list:
         print(row)
         row.update(merge)
@@ -158,3 +158,14 @@ def search_term(term,repo_path):
         results_clean_list.append(item)
     os.chdir(base_dir)
     return results_clean_list
+
+def record_struct(name, search,records):
+    # Merge First
+    language ='general'
+    record_type = ''
+    save_path = '/rubric/'+language+'/'+name+'.json'
+    record_struct = {'name':name,'pattern': search, 'type':record_type,'description':'','records':[records]}
+    record_struct = json.dumps(record_struct, indent=4)
+    open_write(save_path,record_struct)
+    return save_path
+

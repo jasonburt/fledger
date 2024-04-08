@@ -1,0 +1,47 @@
+{
+    "name": "README*",
+    "pattern": "README*",
+    "type": "",
+    "description": "",
+    "records": [
+        [
+            {
+                "path_and_file": "README.md",
+                "location": "",
+                "code": "",
+                "tags": [
+                    "build"
+                ],
+                "usage": "build"
+            },
+            {
+                "path_and_file": "",
+                "location": "",
+                "code": "",
+                "tags": [],
+                "usage": ""
+            },
+            {
+                "path_and_file": "",
+                "location": "",
+                "code": "",
+                "tags": [],
+                "usage": ""
+            },
+            {
+                "path_and_file": "",
+                "location": "",
+                "code": "",
+                "tags": [],
+                "usage": ""
+            },
+            {
+                "path_and_file": "",
+                "location": "",
+                "code": "",
+                "tags": [],
+                "usage": ""
+            }
+        ]
+    ]
+}
