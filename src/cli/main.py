@@ -17,13 +17,15 @@ def build_skill_assessment(name: str):
     print(f"Building Standards in /standards folder {name}")
     #TODO standards index
     # Open Standards
-    file_and_path = 'tests/data/openssf_example.json'
+    file_and_path = 'tests/data/OpenSSF_Standards_Passing.json'
+
     #Convert to markdown
     with open(file_and_path, 'r', encoding='utf-8') as file:
     	standards_json = json.load(file)
     #TODO: Discovery functions
     print(standards_json)
-    skills_assment_matrix = helpers.mixin_skill_assessment_details(standards_json)
+    skills_assment_matrix = helpers.flatten_categories(standards_json)
+    skills_assment_matrix = helpers.mixin_skill_assessment_details(skills_assment_matrix)
     markdown = helpers.json_to_markdown_table(skills_assment_matrix)
     helpers.open_write('/assessments/user/overview_skills_and_project_matrix.md',markdown)
 
@@ -56,7 +58,6 @@ def search(search: str, repo_path: str = '', search_type: str = 'code'):
 	if search_type == 'code':
 		results = helpers.search_term(search, repo_path)
 	if search_type == 'file':
-		print('FILE')
 		results = helpers.search_files(search,repo_path)
 	try:
 		print(results)
