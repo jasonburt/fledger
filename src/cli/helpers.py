@@ -104,7 +104,7 @@ def search_files(term,repo_path):
             #   print(output.strip())
             break
     for thing in results_list:
-        if thing is '':
+        if thing == '':
             continue
         item = {'path_and_file':thing,'location':'','code':'', 'tags': [],'usage':''}
         if '.md' in item['path_and_file']:
