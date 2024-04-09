@@ -1,6 +1,11 @@
 import typer
 from typing import Optional
-from  cli import helpers
+try:
+	from  cli import helpers
+except:
+	import helpers
+
+
 import json
 
 app = typer.Typer(no_args_is_help=True)
@@ -10,14 +15,14 @@ def getting_started(name: str):
     "Getting Started"
     print(f"Hello! Welcome to fledger! To get started read the README for a list of example and connect with the project at https://github.com/jasonburt/fledger.")
 
-#python src/cli/main.py build-skill-assessment openssf
+#python src/cli/main.py build-skill-assessment OpenSSF_Standards_Passing
 @app.command()
 def build_skill_assessment(name: str):
     "Builds skill assessment using standards passed."
     print(f"Building Standards in /standards folder {name}")
     #TODO standards index
     # Open Standards
-    file_and_path = 'tests/data/OpenSSF_Standards_Passing.json'
+    file_and_path = 'tests/data/'+name+'.json'
 
     #Convert to markdown
     with open(file_and_path, 'r', encoding='utf-8') as file:
