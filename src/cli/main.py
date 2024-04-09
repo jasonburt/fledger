@@ -41,11 +41,11 @@ def update_skill_assessment(category: str, subcat: str, command: str, term: str,
         full_file = file.read()
    
     #store the existing skill assessment as a json file
+    #need to delete this file when we're done
     helpers.mrkd2json(full_file, "assessments/user/tempSkillAssessment.json")
 
     #open our intermediary json input file, as well as our json output file
     infile = open("assessments/user/tempSkillAssessment.json", "r")
-    outfile = open("assessments/user/tempSkillAssessmentUpdated.json", "w")
 
     data_file = infile.read()
     data = json.loads(data_file)
@@ -72,12 +72,15 @@ def update_skill_assessment(category: str, subcat: str, command: str, term: str,
     #write in new data 
     for content in data:
         if content != '{}' and len(content) > 3: #ensure we're not in the empty row
+            #put in 'Try / Except' block to prevent crash on bad user input
+            #also - normalize for letter casing
             if content['Category'] == category and content['Sub Category'] == subcat: #ensure we write the correct cell
                 content['example'] = evidence_str
 
     #convert our intermediary JSON data back to its proper .md file format
     markdown = helpers.json_to_markdown_table(data)
     helpers.open_write('assessments/user/tempSkillAssessmentUpdated.md', markdown)
+    
 
 
 

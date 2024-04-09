@@ -127,8 +127,9 @@ def search_term(term,repo_path):
 
 
 """
-Converts a provided markdown file (e.g. the output from json_to_markdown) and converts it back to JSON and stores it in the 
-pathway provided as the second argument.
+Takes a provided markdown file (e.g. the output from json_to_markdown) and converts it back to JSON and stores it in the 
+pathway provided as the second argument. This new file can be modified and then converted back to markdown.
+Source: https://stackoverflow.com/questions/66185838/convert-markdown-table-to-json-with-python
 """
 def mrkd2json(inp, outfile_path):
     lines = inp.split('\n')

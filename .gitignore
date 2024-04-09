@@ -13,4 +13,8 @@ tmp
 __pycache__/
 # Firebase cache
 .obsidian/
+.DS_Store
+myenv/
+assessments/user/
+assessments/project/
 
