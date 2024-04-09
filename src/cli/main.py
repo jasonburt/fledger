@@ -1,6 +1,6 @@
 import typer
 from typing import Optional
-import helpers
+from  cli import helpers
 import json
 
 app = typer.Typer(no_args_is_help=True)
@@ -51,7 +51,7 @@ def build_project_assessment(name: str):
     markdown = helpers.json_to_markdown_table(project_assessment_matrix)
     helpers.open_write('/assessments/project/overview_project_matrix.md',markdown)
 
-#python src/cli/main.py search README --repo-path=Your/Cool/Repo --search-type=README
+#python src/cli/main.py search README --repo-path=Your/Cool/Repo --search-type=file
 #python src/cli/main.py search 'README*' --search-type=file
 #python src/cli/main.py search 'README*' --search-type=file -save
 @app.command()
@@ -63,7 +63,7 @@ def search(search: str, repo_path: str = '', search_type: str = 'code', save: bo
 		results = helpers.search_files(search,repo_path)
 	if results:
 		#TODO: For long files show short list.
-		print(len(results)+' records found. First record below.')
+		print(str(len(results)) + ' records found. First record below.')
 		print(json.dumps(results[0],indent=4))
 	else:
 		print('No results found, change search paramaters.')
