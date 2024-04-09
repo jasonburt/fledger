@@ -51,36 +51,29 @@ def update_skill_assessment(category: str, subcat: str, command: str, term: str,
     data = json.loads(data_file)
     new_data = helpers.search_term(term, repo_path)
  
-    #evidence_str is the master list, which encompasses the entire 'evidence' cell
+    #evidence_str is the master list, which encompasses the entire 'example' cell
     evidence_str = "<ul>"
-    evidence_count = 1
+    key_str = ""
+    record_count = 1
 
-    for item in new_data:
-         evidence_str = evidence_str + "<li>" + str(item) + "</li>"
+    #assemble the list of evidence in bullet point format
+    for record in new_data:
+         item_header_str = "<li>" + "Item " + str(record_count) + "<ul>"
+         for key in record:
+              key_str = key_str + "<li>" + key + "<ul>"
+              content_str = "<li>" + str(record[key]) + "</li>"
+              key_str = key_str + content_str + "</li></ul>"
+         item_header_str = item_header_str + key_str + "</li></ul>"
+         evidence_str = evidence_str + item_header_str
+         record_count += 1
+         key_str = ""
     evidence_str = evidence_str + "</ul>"
-
-    """ 
-
-    #build the file directory for the evidence gathered 
-    for item in new_data:
-        evidence_str = evidence_str + "+--Item " + str(evidence_count)
-        evidence_count += 1
-        #evidence_str = evidence_str + "\n|- - "
-        for key in item:
-            evidence_str = evidence_str + "\n\t|+-- " + key
-            evidence_str = evidence_str + "\n\t\t|+--- " + str(item[key])
-            #print(f"Key: {key}, Value: {item[key]}")
-            #<ul><li>item1</li><li>item2</li></ul>
-    #print(evidence_str)
-    """
 
     #write in new data 
     for content in data:
-        if content != '{}' and len(content) > 3:
-            if content['Category'] == category and content['Sub Category'] == subcat:
-                content['example'] = "hello :)"
-                #the below method is not currently writing to the md file for some reason. It simply leaves content['example'] as blank
-                #content['example'] = evidence_str
+        if content != '{}' and len(content) > 3: #ensure we're not in the empty row
+            if content['Category'] == category and content['Sub Category'] == subcat: #ensure we write the correct cell
+                content['example'] = evidence_str
 
     #convert our intermediary JSON data back to its proper .md file format
     markdown = helpers.json_to_markdown_table(data)
