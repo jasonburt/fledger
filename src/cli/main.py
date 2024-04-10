@@ -57,9 +57,9 @@ def build_project_assessment(name: str):
     markdown = helpers.json_to_markdown_table(project_assessment_matrix)
     helpers.open_write('/assessments/project/overview_project_matrix.md',markdown)
 
-#python cli/main.py search README --repo-path=Your/Cool/Repo --search-type=file
+#python cli/main.py search 'README' --repo-path=Your/Cool/Repo --search-type=file
 #python cli/main.py search 'README*' --search-type=file
-#python cli/main.py search 'README*' --search-type=file -save
+#python cli/main.py search 'README*' --search-type=file --save
 @app.command()
 def search(search: str, repo_path: str = '', search_type: str = 'code', save: bool = False):
 	"Searches for a specific term in a repo."
