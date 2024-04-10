@@ -69,23 +69,26 @@ def update_skill_assessment(category: str, subcat: str, command: str, search: st
     save_path = helpers.record_struct(name,search,results)
     print('Record Recorded at '+save_path)
 
+    #build relative path from src to ../../rubic/{language}/{file_name}
     example_str = "[" + name + "]" + "(../.." + save_path + ")" "<ul><li>Records found: " + str(len(results)) + "</li></ul>"
     
     print(example_str)
 
     #write in new data 
-    for content in data:
-        if content != '{}' and len(content) > 3: #ensure we're not in the empty row
+    for row in data:
+        if row != '{}' and len(row) > 3: #ensure we're not in the empty row
             #put in 'Try / Except' block to prevent crash on bad user input
             #also - normalize for letter casing
             try:
-                if content['category_name'] == category and content['subcategory_name'] == subcat: #ensure we write the correct cell
-                    content['example'] = example_str
+                if row['category_name'] == category and row['subcategory_name'] == subcat: #ensure we write the correct cell
+                    print(row['example'])
+                    row['example'] = row['example'] + "<br>" + example_str
+                    #TODO - don't overwrite the entire 'example' cell! Just append.
             except:
                 print("Error - category name or sub-category name not defined. Ensure spelling is correct.")
 
     markdown = helpers.json_to_markdown_table(data)
-    helpers.open_write('../assessments/user/tempSkillAssessmentUpdated.md', markdown)
+    helpers.open_write('../assessments/user/overview_skills_and_project_matrix.md', markdown)
 
     return
 
