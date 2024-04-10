@@ -76,7 +76,12 @@ def build_project_assessment(name: str):
 # python cli/main.py search 'README*' --search-type=file --save
 @app.command()
 def search(
-    search: str, repo_path: str = "", search_type: str = "code", save: bool = False
+    search: str,
+    repo_path: str = "",
+    search_type: str = "code",
+    save: str = "",
+    category="",
+    subcategory="",
 ):
     "Searches for a specific term in a repo."
     if search_type == "code":
@@ -89,10 +94,12 @@ def search(
         print(json.dumps(results[0], indent=4))
     else:
         print("No results found, change search paramaters.")
-    if save:
+    if save != "":
         # TODO fix this
         name = search
-        save_path = helpers.record_struct(name, search, results)
+        save_path = helpers.record_struct(
+            name, search, search_type, results, save, category, subcategory
+        )
         print("Record Recorded at " + save_path)
 
 

@@ -205,20 +205,31 @@ def search_term(term, repo_path):
     return results_clean_list
 
 
-def record_struct(name, search, records):
+def record_struct(name, search, search_type, record_links, save, category, subcategory):
     # Merge First
+    original_records = []
     language = "general"
-    record_type = ""
     name = re.sub("[^A-Za-z0-9]+", "", name)
     name = name + "_file_check"
-    save_path = "/rubric/" + language + "/" + name + ".json"
-    record_struct = {
+    save_path = "/assessments/" + save + "/evidence.json"
+    # save_path = "/rubric/" + language + "/" + name + ".json"
+
+    # Load records
+    try:
+        with open(save_path, "r") as records_file:
+            records = json.loads(records_file)
+    except:
+        records = []
+    record = {
         "name": name,
         "pattern": search,
-        "type": record_type,
+        "type": search_type,
+        "category": category,
+        "subcategory": subcategory,
         "description": "",
-        "records": [records],
+        "records": [record_links],
     }
-    record_struct = json.dumps(record_struct, indent=4)
-    open_write(save_path, record_struct)
+    records.append(record)
+    save_records = json.dumps(records, indent=4)
+    open_write(save_path, save_records)
     return save_path
