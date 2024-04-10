@@ -13,5 +13,7 @@ tmp
 __pycache__/
 # Firebase cache
 .obsidian/
-
+myenv/
 .DS_Store
+/assessments
+src/rubric

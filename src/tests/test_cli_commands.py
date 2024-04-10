@@ -26,3 +26,4 @@ def test_command_build_skill_assesment():
 	result = runner.invoke(app, ["build-skill-assessment", 'OpenSSF_Standards_Passing'])
 	assert 'Building Standards in /standards folder OpenSSF_Standards_Passing' in result.stdout
 	assert "'standardsSet': 'OpenSSF Best Practices'" in result.stdout
+
