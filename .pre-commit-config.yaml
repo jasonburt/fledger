@@ -4,12 +4,13 @@ repos:
     hooks:
       - id: pytest-check
         name: pytest-check
-        entry: pytest
+        entry: ./.venv/bin.pytest tests
         language: system
+        types: [python]
         pass_filenames: false
         always_run: true
-  - repo: https://github.com/jasonburt/fledger
-    rev: 0.0.1
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.11.4
     hooks:
       - id: isort
         files: \.py$
@@ -39,7 +40,7 @@ repos:
   rev: 22.12.0
   hooks:
   - id: black
-    language_version: python3.8
+    language_version: python3.12.2
 
 # Tell precommit.ci bot to update codoe format tools listed in the file
 # versions every quarter
