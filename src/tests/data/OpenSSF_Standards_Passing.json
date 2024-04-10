@@ -92,7 +92,7 @@
         {
             "name": "Vulnerability Report Process",
             "numRequirements": "3",
-            "requirements": ["The project MUST publish the process for reporting vulnerabilities on the project site.", 
+            "requirements": ["The project MUST publish the process for reporting vulnerabilities on the project site.",
                               "If private vulnerability reports are supported, the project MUST include how to send the information in a way that is kept private. {N/A allowed}",
                               "The project's initial response time for any vulnerability report received in the last 6 months MUST be less than or equal to 14 days. {N/A allowed}"
                             ]

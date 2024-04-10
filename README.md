@@ -16,7 +16,7 @@ Status (Verified) is confirmed by multiple people added to the repo. Quotes TBD.
 - Engineering Job Seekers
   - Use best in class standards and opensource code bases to learn
   - Have actual records of your work
-  - Have a structured guide to help you 
+  - Have a structured guide to help you
 - Technical Startup founders, Engineering Managers trying to improve their hiring process.
   - Building Rubrics, Scores, and allignment can take weeks. - (Verified)
   - Reduce Scoring and Feedback time - (Verified)

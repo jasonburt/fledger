@@ -1,26 +1,25 @@
-Model version: 1.00c rev1  
-Release Date = 04/01/24  
-Dataset = My_CatsAndDogs  
-Model Name = CatOrDog  
-Model Type = Image Classification  
-Model mode = Keras EfficientDet  
-Source Model: EfficientNetB0  
+Model version: 1.00c rev1
+Release Date = 04/01/24
+Dataset = My_CatsAndDogs
+Model Name = CatOrDog
+Model Type = Image Classification
+Model mode = Keras EfficientDet
+Source Model: EfficientNetB0
 
-- For TensorFlow Models use the [saved model CLI](https://www.tensorflow.org/guide/saved_model#details_of_the_savedmodel_command_line_interface)to find input and output tensors  
-Input Tensor:  
-    inputs['efficientnetb0_input'] tensor_info:  
-        dtype: DT_FLOAT  
-        shape: (-1, 224, 224, 3)  
-        name: serving_default_efficientnetb0_input:0  
+- For TensorFlow Models use the [saved model CLI](https://www.tensorflow.org/guide/saved_model#details_of_the_savedmodel_command_line_interface)to find input and output tensors
+Input Tensor:
+    inputs['efficientnetb0_input'] tensor_info:
+        dtype: DT_FLOAT
+        shape: (-1, 224, 224, 3)
+        name: serving_default_efficientnetb0_input:0
 
-Output Tensor:  
-    outputs['dense_1'] tensor_info:  
-        dtype: DT_FLOAT  
-        shape: (-1, 1)  
+Output Tensor:
+    outputs['dense_1'] tensor_info:
+        dtype: DT_FLOAT
+        shape: (-1, 1)
         name: StatefulPartitionedCall:0
   Method name is: tensorflow/serving/predict
 
 Output classes = {1:'dog', 2:'cat'}
 Notes: Decide if an image contains a Cat or Dog
 Change from last release: N/A, first release
-
