@@ -78,8 +78,11 @@ def update_skill_assessment(category: str, subcat: str, command: str, search: st
         if content != '{}' and len(content) > 3: #ensure we're not in the empty row
             #put in 'Try / Except' block to prevent crash on bad user input
             #also - normalize for letter casing
-            if content['category_name'] == category and content['subcategory_name'] == subcat: #ensure we write the correct cell
-                content['example'] = example_str
+            try:
+                if content['category_name'] == category and content['subcategory_name'] == subcat: #ensure we write the correct cell
+                    content['example'] = example_str
+            except:
+                print("Error - category name or sub-category name not defined. Ensure spelling is correct.")
 
     markdown = helpers.json_to_markdown_table(data)
     helpers.open_write('../assessments/user/tempSkillAssessmentUpdated.md', markdown)
