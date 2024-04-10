@@ -34,9 +34,16 @@ def build_skill_assessment(name: str):
     markdown = helpers.json_to_markdown_table(skills_assment_matrix)
     helpers.open_write('/assessments/user/overview_skills_and_project_matrix.md',markdown)
 
-#python src/cli/main.py update-skill-assessment Documentation Detailed search 'README*' --search-type=file
-#python cli/main.py update-skill-assessment Documentation Detailed search 'README*' --search-type=file
-#python cli/main.py update-skill-assessment Basics Documentation search 'README*' --search-type=file
+
+# DEPRECATED #python cli/main.py update-skill-assessment Documentation Detailed search 'README*' --search-type=file
+    
+#python cli/main.py update-skill-assessment Basics Documentation (updates specific sub-category in category)
+#python cli/main.py update-skill-assessment Basics (updates given Category)
+#python cli/main.py update-skill-assessment (updates ALL categories)
+"""
+This function searches the /user/evidence
+/category/sub-category folder for records. Updates skill-assessment based on record 'type'
+"""
 @app.command()
 def update_skill_assessment(category: str, subcat: str, command: str, search: str, repo_path: str = '', search_type: str = 'code'):
     "Updates skill assessment using standards passed."
@@ -51,7 +58,9 @@ def update_skill_assessment(category: str, subcat: str, command: str, search: st
     old_skills_overview_json = helpers.markdown_to_json(full_file)
     data = json.loads(old_skills_overview_json)
 	
-    #2) perform a search to create a record - write the file path to the json object we just got
+
+    # NOTE -- search has already been performed. update-skill-assessment scans record structs in /user/evidence.json and updates the 
+    #         skills assessment based on the 'category', 'sub-category', and'type' tag in the record
 	
     #'search' function code. We need save_path, name, and results
     if search_type == 'code':
@@ -77,13 +86,12 @@ def update_skill_assessment(category: str, subcat: str, command: str, search: st
     #write in new data 
     for row in data:
         if row != '{}' and len(row) > 3: #ensure we're not in the empty row
-            #put in 'Try / Except' block to prevent crash on bad user input
+            #TODO - notify user if they mispell category and subcategory. Consider bool 'found' value.
             #also - normalize for letter casing
             try:
                 if row['category_name'] == category and row['subcategory_name'] == subcat: #ensure we write the correct cell
                     print(row['example'])
                     row['example'] = row['example'] + "<br>" + example_str
-                    #TODO - don't overwrite the entire 'example' cell! Just append.
             except:
                 print("Error - category name or sub-category name not defined. Ensure spelling is correct.")
 
