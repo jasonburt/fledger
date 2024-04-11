@@ -57,21 +57,27 @@ This function searches the /user/evidence
 /category/sub-category folder for records. Updates skill-assessment based on record 'type'
 """
 @app.command()
-def update_skill_assessment(category: str, subcat: str, command: str, search: str, repo_path: str = '', search_type: str = 'code'):
+def update_skill_assessment(category: str):
     "Updates skill assessment using standards passed."
     col_index = 0
     letter_index = 0
-    print(f"Updating section {category}:{subcat} with {command}:{search}...")
+    #print(f"Updating skill assessment in the {category}:{subcat} with {command}:{search}...")
     file_and_path = '../assessments/user/overview_skills_and_project_matrix.md'
     evidence_and_path = "./assessments/project/evidence.json"
+
     with open(file_and_path, 'r', encoding='utf-8') as file:
         full_file = file.read()
 
     with open(evidence_and_path, 'r', encoding='utf-8') as evidence_file:
         full_evidence_file = evidence_file.read()
    
-    
+    #collect the relevant records for updating
     old_skills_overview_json = helpers.markdown_to_json(full_file)
+    full_evidence_json = json.loads(full_evidence_file)
+
+    for record in full_evidence_json:
+        for item in record:
+            print(f"{item}: {record[item]}")
 
 
 
@@ -81,7 +87,9 @@ def update_skill_assessment(category: str, subcat: str, command: str, search: st
     # NOTE -- search has already been performed. update-skill-assessment scans record structs in /user/evidence.json and updates the 
     #         skills assessment based on the 'category', 'sub-category', and'type' tag in the record
     #         Assessments folder - we have src/assessments and /assessments. Do we need both? 
-    #         
+    #
+    #         In search, we create a record in evidence.json. When do we specify the category and subcategory for these
+    #         records? Arguments to search? 
 	
     #'search' function code. We need save_path, name, and results
 
