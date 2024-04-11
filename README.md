@@ -70,3 +70,11 @@ fledger update-project-assement
 ```sh
 fledger # or --help should respond with the optional fledger commands.
 ```
+
+## License
+
+Fledger is licensed under the [Apache-2.0](https://opensource.org/licenses/APACHE-2.0) license.
+
+## Contributing
+
+Contributions are welcome! This community and project would not be what it is without the [contributors](https://github.com/jasonburt/fledger/graphs/contributors). All contributions, from bug reports to new features, are welcome and encouraged. Please view the [contribution guidelines](/CONTRIBUTING.md) before getting started.
