@@ -51,6 +51,7 @@ def build_skill_assessment(name: str):
 #python cli/main.py update-skill-assessment Basics Documentation (updates specific sub-category in category)
 #python cli/main.py update-skill-assessment Basics (updates given Category)
 #python cli/main.py update-skill-assessment (updates ALL categories)
+#python cli/main.py update-skill-assessment user (updates skill assessment in user folder)
 """
 This function searches the /user/evidence
 /category/sub-category folder for records. Updates skill-assessment based on record 'type'
@@ -62,18 +63,29 @@ def update_skill_assessment(category: str, subcat: str, command: str, search: st
     letter_index = 0
     print(f"Updating section {category}:{subcat} with {command}:{search}...")
     file_and_path = '../assessments/user/overview_skills_and_project_matrix.md'
+    evidence_and_path = "./assessments/project/evidence.json"
     with open(file_and_path, 'r', encoding='utf-8') as file:
         full_file = file.read()
+
+    with open(evidence_and_path, 'r', encoding='utf-8') as evidence_file:
+        full_evidence_file = evidence_file.read()
    
     
     old_skills_overview_json = helpers.markdown_to_json(full_file)
-    data = json.loads(old_skills_overview_json)
+
+
+
+
 	
 
     # NOTE -- search has already been performed. update-skill-assessment scans record structs in /user/evidence.json and updates the 
     #         skills assessment based on the 'category', 'sub-category', and'type' tag in the record
+    #         Assessments folder - we have src/assessments and /assessments. Do we need both? 
+    #         
 	
     #'search' function code. We need save_path, name, and results
+
+    """
     if search_type == 'code':
         results = helpers.search_term(search, repo_path)
     if search_type == 'file':
@@ -108,7 +120,7 @@ def update_skill_assessment(category: str, subcat: str, command: str, search: st
 
     markdown = helpers.json_to_markdown_table(data)
     helpers.open_write('../assessments/user/overview_skills_and_project_matrix.md', markdown)
-
+    """
     return
 
 

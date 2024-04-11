@@ -233,3 +233,17 @@ def record_struct(name, search, search_type, record_links, save, category, subca
     save_records = json.dumps(records, indent=4)
     open_write(save_path, save_records)
     return save_path
+
+def markdown_to_json(inp):
+     lines = inp.split('\n')
+     ret=[]
+     keys=[]
+     for i,l in enumerate(lines):
+         if i==0:
+             keys=[_i.strip() for _i in l.split('|')]
+         elif i==1: continue
+         else:
+             ret.append({keys[_i]:v.strip() for _i,v in enumerate(l.split('|')) if  _i>0 and _i<len(keys)-1})
+     json_str = json.dumps(ret, indent = 4) 
+     return json.loads(json_str)
+     #print(mrkd2json(my_str))  
