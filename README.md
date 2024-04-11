@@ -39,37 +39,50 @@ Checkout a project in the language your interested in prepping for. Try to find 
 git checkout xxx project
 ```
 
+### Project Assessment
 Do an assessment scan of the project to see if its up to [OSS Standards](https://www.bestpractices.dev/en/criteria/0?details=true&rationale=true).
 ```sh
 fledger build-project-assesment openSSFBestPractices
 ```
 
-This will generate an output in the /assements folder with the following files.
+This will generate an output in the **/assessments/project/overview_project.md** folder.
 
-Create a user skills and project matrix using the standard.
-
+```sh
+fledger search 'README*' --search-type=file --save=user
+```
+### User Assessment
+Creates a user skills and project matrix using the standard entered
 Do an assessment scan of the project to see if its up to [OSS Standards](https://www.bestpractices.dev/en/criteria/0?details=true&rationale=true).
 ```sh
 fledger build-skill-assesment openSSFBestPractices
 ```
 
-After checking the matrix in folder (x) write some code and commit and run command.
+This generates an assessment file in **/assessments/users/overview_skills_and_project.md**.
+Next create a **Record**
+```sh
+fledger search 'README*' --search-type=file --save=user
+```
+This creates a record with a code example that matches the pattern in the code. **/assessments/users/evidence.json**
+
+Update your user assessment with records by running the update command.
+```sh
+fledger update-skill-assessment user
+```
+
+This updates the Skills and Project matrix.
+
+**Backlog Functionality**
+Optionally, you can fix some code and save the commit.
 ```sh
 git add .
 git commit -m "Privacy Standards update"
-fledger update-skill-assement
+fledger update-skill-assement user
 ```
-
-After a general commit to check the project status simply run.
-```sh
-fledger update-project-assement
-```
-
 
 ### Help and additional Commands
 
 ```sh
-fledger # or --help should respond with the optional fledger commands.
+fledger # Running base command or --help should respond with the optional fledger commands.
 ```
 
 ## License
