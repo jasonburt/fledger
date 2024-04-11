@@ -87,10 +87,21 @@ def update_skill_assessment(category: str):
     # NOTE -- search has already been performed. update-skill-assessment scans record structs in /user/evidence.json and updates the 
     #         skills assessment based on the 'category', 'sub-category', and'type' tag in the record
     #         Assessments folder - we have src/assessments and /assessments. Do we need both? 
+    #           A: just the highest level one 
     #
     #         In search, we create a record in evidence.json. When do we specify the category and subcategory for these
     #         records? Arguments to search? 
+    #           A: If the records have unspecified categories, then we can list these records in a seperate area marked as such.
+    #              We'll update the skill assessment with all tagged records, and we will update the 'untagged' records in their section.
+    #
+    #         When we update a skill assessment, we want to link to a json file in the 'examples' column to avoid
+    #         pasting entire records in and cluttering the space. But are we still creating a json file for each individual
+    #         record? 
+    #           A: include '#l{line-number}' in the route to make an anchor link in evidence.json
+            #more todo notes
 	
+
+
     #'search' function code. We need save_path, name, and results
 
     """
@@ -156,6 +167,7 @@ def build_project_assessment(name: str):
 # python cli/main.py search 'README' --repo-path=Your/Cool/Repo --search-type=file
 # python cli/main.py search 'README*' --search-type=file
 # python cli/main.py search 'README*' --search-type=file --save
+# python cli/main.py search 'README*' --search-type=file --save=user Basic Documentation (?)
 @app.command()
 def search(
     search: str,
