@@ -3,6 +3,8 @@ Fledging is the stage in a flying animal's life between hatching or birth and be
 
 Fledger is a Python Framework that simplifies software engineering and development under standards. It can be used by internal and opensource teams to help identify gaps, bring new team members up to speed, and aid in evidence collection. For people in training such as Software Engineers, Product Managers, or other positions it can be used to create a training reference guide using an OpenSource project as an example.
 
+
+
 ## High Level Areas Fledgler covers.
 - Quality (Standards, Testing, Performance)
 - Documentation (READMEs, Legal, Guides, CheatSheets)
@@ -10,20 +12,19 @@ Fledger is a Python Framework that simplifies software engineering and developme
 - Security
 
 ### Who is this for?
-Status (Verified) is confirmed by multiple people added to the repo. Quotes TBD. (FEEDBACK TBD) is in the pipeline.
 
-
-- Engineering Job Seekers
+- **Engineering Job Seekers**
+  - "Study and Build best practices using internal or Opensource projects instead of Leet Code."
   - Use best in class standards and opensource code bases to learn
   - Have actual records of your work
   - Have a structured guide to help you
-- Technical Startup founders, Engineering Managers trying to improve their hiring process.
+- **Technical Startup founders**, **Engineering Managers** trying to improve their hiring process.
   - Building Rubrics, Scores, and allignment can take weeks. - (Verified)
   - Reduce Scoring and Feedback time - (Verified)
-- Opensource founders
+- **Opensource founders**
   - Use it to get started correctly just getting started can take 2+ weeks to it right. - (Verified)
   - Use it to assess and get the help you need on your project (FEEDBACK TBD)
-- Security & Compliance Teams
+- **Security & Compliance Teams**
   - Use it to reduce friction and drive adoption for training requirements, interviews, and other relevant areas. (FEEDBACK TBD)
 
 
