@@ -73,6 +73,7 @@ def update_skill_assessment(folder: str):
     try:
         evidence_file = open(evidence_and_path, 'r', encoding='utf-8')
         evidence_full_file = evidence_file.read()
+        #print(evidence_full_file)
         evidence_file.close()
     except:
         print(f"Error: path '{evidence_and_path}' is not a valid path.")
@@ -84,14 +85,19 @@ def update_skill_assessment(folder: str):
 
     uncat_str = ""
 
+
     for record in full_evidence_json:
         found = False
+        #print(record)
         for row in old_skills_overview_json:
+            #print(row)
             try:
+                #print(f"Record: {record['category']} -- {record['subcategory']}")
+                #print(f"Row: {row['category_name']} -- {row['subcategory_name']}")
                 if record['category'] == row['category_name'] and record['subcategory'] == row['subcategory_name']:
                     #need line number of top of 'record'. Verify this functionality as the evidence file grows.
                     line_number = helpers.find_line_number(record['pattern'], evidence_and_path)
-                    example_str = "[" + record['pattern'] + "]" + "(../." + evidence_and_path + "#l{line_number})" "<ul><li>Records found: " + str(len(record['records'])) + "</li></ul>"
+                    example_str = "[" + record['pattern'] + "]" + "(../" + evidence_and_path + "#L=" + line_number + ")" "<ul><li>Records found: " + str(len(record['records'])) + "</li></ul>"
                     row['example'] = example_str
                     found = True
             except:
@@ -115,7 +121,6 @@ def update_skill_assessment(folder: str):
                 
     markdown = helpers.json_to_markdown_table(old_skills_overview_json)
     helpers.open_write('../assessments/user/overview_skills_and_project_matrix.md', markdown)
-    
     
     return
 	

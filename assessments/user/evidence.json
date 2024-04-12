@@ -3,8 +3,8 @@
         "name": "README_file_check",
         "pattern": "README*",
         "type": "file",
-        "category": "Documentation",
-        "subcategory": "Basics",
+        "category": "Basics",
+        "subcategory": "Documentation",
         "description": "",
         "records": [
             [
