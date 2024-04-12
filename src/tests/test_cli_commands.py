@@ -33,3 +33,8 @@ def test_command_build_skill_assesment():
         in result.stdout
     )
     assert "'standardsSet': 'OpenSSF Best Practices'" in result.stdout
+    
+def test_update_skill_assessment():
+    # python src/cli/main.py update-skill-assessment user
+    result = runner.invoke(app, ["update-skill-assessment", "user"])
+    assert "Error" not in result.stdout

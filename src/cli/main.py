@@ -48,15 +48,16 @@ def build_skill_assessment(name: str):
 
 #python cli/main.py update-skill-assessment user (updates skill assessment in user folder)
 """
-This function searches the /user/evidence
-/category/sub-category folder for records. Updates skill-assessment based on record 'type'
+This function searches the /{folder} for the overview_skills_and_project_matrix.md file to be updated.
+It scans the '/assessments/user/evidence.json' file to apply existing records to the appropriate 'example'
+cell in the .md file, based on the record's Category and Sub-Category values. Records without these values
+are dumped into the 'Uncategorized' category (not yet created)
 """
 @app.command()
 def update_skill_assessment(folder: str):
     "Updates skill assessment using standards passed."
-    col_index = 0
-    letter_index = 0
-    #print(f"Updating skill assessment in the {category}:{subcat} with {command}:{search}...")
+
+    #routes are currently relative to src execution
     overview_and_path = '../assessments/user/overview_skills_and_project_matrix.md'
     evidence_and_path = "../assessments/user/evidence.json"
 
@@ -77,7 +78,6 @@ def update_skill_assessment(folder: str):
         print(f"Error: path '{evidence_and_path}' is not a valid path.")
 
     
-   
     #collect the relevant records for updating
     old_skills_overview_json = helpers.markdown_to_json(overview_full_file)
     full_evidence_json = json.loads(evidence_full_file)
@@ -103,6 +103,7 @@ def update_skill_assessment(folder: str):
             pass
             #
 
+    #TODO - verify this functionaltiy once the 'Uncategorized' row is created
     found = False
     for row in old_skills_overview_json:
         try:
@@ -110,40 +111,15 @@ def update_skill_assessment(folder: str):
                 row['example'] = uncat_str
                 found = True
         except:
-            pass #
+            pass #handles the empty rows at the end of overview_skills_and_project.md. No need to alert the user.
     if found is False:
         print("Notice - the category 'Uncategorized' does not exist yet, or the name does not match.")
-
-        
                 
     markdown = helpers.json_to_markdown_table(old_skills_overview_json)
     helpers.open_write('../assessments/user/overview_skills_and_project_matrix.md', markdown)
     
     
     return
-
-
-
-
-	
-
-    # NOTE -- search has already been performed. update-skill-assessment scans record structs in /user/evidence.json and updates the 
-    #         skills assessment based on the 'category', 'sub-category', and'type' tag in the record
-    #         Assessments folder - we have src/assessments and /assessments. Do we need both? 
-    #           A: just the highest level one 
-    #
-    #         In search, we create a record in evidence.json. When do we specify the category and subcategory for these
-    #         records? Arguments to search? 
-    #           A: If the records have unspecified categories, then we can list these records in a seperate area marked as such.
-    #              We'll update the skill assessment with all tagged records, and we will update the 'untagged' records in their section.
-    #
-    #         When we update a skill assessment, we want to link to a json file in the 'examples' column to avoid
-    #         pasting entire records in and cluttering the space. But are we still creating a json file for each individual
-    #         record? 
-    #           A: include '#l{line-number}' in the route to make an anchor link in evidence.json
-            #more todo notes
-            #Python 3.9.13 - current
-            #python3.12.2 - needed 
 	
 
 
