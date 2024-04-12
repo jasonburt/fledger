@@ -29,7 +29,7 @@ def build_skill_assessment(name: str):
     print(f"Building Standards in /standards folder {name}")
     # TODO standards index
     # Open Standards
-    file_and_path = Path("tests/data/") / f"{name}.json"
+    file_and_path = Path("src/tests/data") / f"{name}.json"
 
     # Convert to markdown
     with open(file_and_path, "r", encoding="utf-8") as file:
@@ -60,7 +60,7 @@ def build_project_assessment(name: str):
     "Builds repo standards assessment in the standards file."
     print(f"Building Standards in /assessments/project folder {name}")
     # Open Standards
-    file_and_path = "tests/data/" + name + ".json"
+    file_and_path = Path("src/tests/data") / f"{name}.json"
     # Convert to markdown
     with open(file_and_path, "r", encoding="utf-8") as file:
         standards_json = json.load(file)
@@ -102,5 +102,5 @@ def search(
         helpers.record_struct(
             name, search, search_type, results, save, category, subcategory
         )
-
+if __name__ == "__main__":
     app()
