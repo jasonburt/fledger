@@ -44,40 +44,83 @@ def build_skill_assessment(name: str):
     )
     print("Build Complete")
 
-
-
-# DEPRECATED #python cli/main.py update-skill-assessment Documentation Detailed search 'README*' --search-type=file
     
-#python cli/main.py update-skill-assessment Basics Documentation (updates specific sub-category in category)
-#python cli/main.py update-skill-assessment Basics (updates given Category)
-#python cli/main.py update-skill-assessment (updates ALL categories)
+
 #python cli/main.py update-skill-assessment user (updates skill assessment in user folder)
 """
 This function searches the /user/evidence
 /category/sub-category folder for records. Updates skill-assessment based on record 'type'
 """
 @app.command()
-def update_skill_assessment(category: str):
+def update_skill_assessment(folder: str):
     "Updates skill assessment using standards passed."
     col_index = 0
     letter_index = 0
     #print(f"Updating skill assessment in the {category}:{subcat} with {command}:{search}...")
-    file_and_path = '../assessments/user/overview_skills_and_project_matrix.md'
-    evidence_and_path = "./assessments/project/evidence.json"
+    overview_and_path = '../assessments/user/overview_skills_and_project_matrix.md'
+    evidence_and_path = "../assessments/user/evidence.json"
 
-    with open(file_and_path, 'r', encoding='utf-8') as file:
-        full_file = file.read()
+    #try to open ../assessments/user/overview_skills_and_project_matrix.md
+    try:
+        overview_file = open(overview_and_path, 'r', encoding='utf-8')
+        overview_full_file = overview_file.read()
+        overview_file.close()
+    except:
+        print(f"Error: path '{overview_and_path}' is not a valid path.")
 
-    with open(evidence_and_path, 'r', encoding='utf-8') as evidence_file:
-        full_evidence_file = evidence_file.read()
+    #try to open ./assessments/project/evidence.json
+    try:
+        evidence_file = open(evidence_and_path, 'r', encoding='utf-8')
+        evidence_full_file = evidence_file.read()
+        evidence_file.close()
+    except:
+        print(f"Error: path '{evidence_and_path}' is not a valid path.")
+
+    
    
     #collect the relevant records for updating
-    old_skills_overview_json = helpers.markdown_to_json(full_file)
-    full_evidence_json = json.loads(full_evidence_file)
+    old_skills_overview_json = helpers.markdown_to_json(overview_full_file)
+    full_evidence_json = json.loads(evidence_full_file)
+
+    uncat_str = ""
 
     for record in full_evidence_json:
-        for item in record:
-            print(f"{item}: {record[item]}")
+        found = False
+        for row in old_skills_overview_json:
+            try:
+                if record['category'] == row['category_name'] and record['subcategory'] == row['subcategory_name']:
+                    #need line number of top of 'record'
+                    line_number = helpers.find_line_number(record['pattern'], evidence_and_path)
+                    example_str = "[" + record['pattern'] + "]" + "(../." + evidence_and_path + "#l{line_number})" "<ul><li>Records found: " + str(len(record['records'])) + "</li></ul>"
+                    row['example'] = example_str
+                    found = True
+            except:
+                pass #handles the empty rows at the end of overview_skills_and_project.md. No need to alert the user.
+        if found is False:
+            #here, we assign the record to the "uncategorized" area of the md
+            line_number = helpers.find_line_number(record['pattern'], evidence_and_path)
+            uncat_str = uncat_str + "[" + record['pattern'] + "]" + "(../." + evidence_and_path + "#l{line_number})" "<ul><li>Records found: " + str(len(record['records'])) + "</li></ul><br>" 
+            pass
+            #
+
+    found = False
+    for row in old_skills_overview_json:
+        try:
+            if row['category_name'] == 'Uncategorized':
+                row['example'] = uncat_str
+                found = True
+        except:
+            pass #
+    if found is False:
+        print("Notice - the category 'Uncategorized' does not exist yet, or the name does not match.")
+
+        
+                
+    markdown = helpers.json_to_markdown_table(old_skills_overview_json)
+    helpers.open_write('../assessments/user/overview_skills_and_project_matrix.md', markdown)
+    
+    
+    return
 
 
 
@@ -99,48 +142,9 @@ def update_skill_assessment(category: str):
     #         record? 
     #           A: include '#l{line-number}' in the route to make an anchor link in evidence.json
             #more todo notes
+            #Python 3.9.13 - current
+            #python3.12.2 - needed 
 	
-
-
-    #'search' function code. We need save_path, name, and results
-
-    """
-    if search_type == 'code':
-        results = helpers.search_term(search, repo_path)
-    if search_type == 'file':
-        results = helpers.search_files(search, repo_path)
-    if results:
-        #TODO: For long files show short list.
-        print(str(len(results)) + ' records found. First record below.')
-        print(json.dumps(results[0],indent=4))
-    else:
-        print('No results found, change search paramaters.')
-    #TODO fix this
-    name = search
-    save_path = helpers.record_struct(name,search,results)
-    print('Record Recorded at '+save_path)
-
-    #build relative path from src to ../../rubic/{language}/{file_name}
-    example_str = "[" + name + "]" + "(../.." + save_path + ")" "<ul><li>Records found: " + str(len(results)) + "</li></ul>"
-    
-    print(example_str)
-
-    #write in new data 
-    for row in data:
-        if row != '{}' and len(row) > 3: #ensure we're not in the empty row
-            #TODO - notify user if they mispell category and subcategory. Consider bool 'found' value.
-            #also - normalize for letter casing
-            try:
-                if row['category_name'] == category and row['subcategory_name'] == subcat: #ensure we write the correct cell
-                    print(row['example'])
-                    row['example'] = row['example'] + "<br>" + example_str
-            except:
-                print("Error - category name or sub-category name not defined. Ensure spelling is correct.")
-
-    markdown = helpers.json_to_markdown_table(data)
-    helpers.open_write('../assessments/user/overview_skills_and_project_matrix.md', markdown)
-    """
-    return
 
 
 
