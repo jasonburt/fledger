@@ -15,6 +15,3 @@ __pycache__/
 .obsidian/
 myenv/
 .DS_Store
-/assessments
-src/rubric
-.DS_Store

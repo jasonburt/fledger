@@ -150,7 +150,7 @@ def build_project_assessment(name: str):
 # python cli/main.py search 'README' --repo-path=Your/Cool/Repo --search-type=file
 # python cli/main.py search 'README*' --search-type=file
 # python cli/main.py search 'README*' --search-type=file --save
-# python cli/main.py search 'README*' --search-type=file --save=user Basic Documentation (?)
+# python cli/main.py search 'README*' --search-type=file --save=user --category=Basic --subcategory=Documentation
 @app.command()
 def search(
     search: str,
