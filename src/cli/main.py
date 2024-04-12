@@ -89,7 +89,7 @@ def update_skill_assessment(folder: str):
         for row in old_skills_overview_json:
             try:
                 if record['category'] == row['category_name'] and record['subcategory'] == row['subcategory_name']:
-                    #need line number of top of 'record'
+                    #need line number of top of 'record'. Verify this functionality as the evidence file grows.
                     line_number = helpers.find_line_number(record['pattern'], evidence_and_path)
                     example_str = "[" + record['pattern'] + "]" + "(../." + evidence_and_path + "#l{line_number})" "<ul><li>Records found: " + str(len(record['records'])) + "</li></ul>"
                     row['example'] = example_str
@@ -100,8 +100,6 @@ def update_skill_assessment(folder: str):
             #here, we assign the record to the "uncategorized" area of the md
             line_number = helpers.find_line_number(record['pattern'], evidence_and_path)
             uncat_str = uncat_str + "[" + record['pattern'] + "]" + "(../." + evidence_and_path + "#l{line_number})" "<ul><li>Records found: " + str(len(record['records'])) + "</li></ul><br>" 
-            pass
-            #
 
     #TODO - verify this functionaltiy once the 'Uncategorized' row is created
     found = False

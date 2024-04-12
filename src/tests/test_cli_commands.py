@@ -32,7 +32,7 @@ def test_command_build_skill_assesment():
         "Building Standards in /standards folder OpenSSF_Standards_Passing"
         in result.stdout
     )
-    assert "'standardsSet': 'OpenSSF Best Practices'" in result.stdout
+    assert "'category_name': 'Basics'" in result.stdout
     
 def test_update_skill_assessment():
     # python src/cli/main.py update-skill-assessment user
