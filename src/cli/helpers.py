@@ -6,7 +6,7 @@ from pathlib import Path
 
 
 def check_project_settings():
-    # Adding project settings over and over is a pain, so can we cconfigure with ENV or Setup file?
+    # Adding project settings over and over is a pain, so can we configure with ENV or Setup file?
     # Environment Variable
     repo_path = os.environ["fledger_project_path"]
     # Configuration
@@ -56,16 +56,8 @@ def open_write(file_path: Path, data):
 
     print(f"{file_path.name} was saved to {file_path.parent}")
 
-def open_write(file_path, data):
-    if "/" in file_path[0]:
-        file_path = file_path[1:]
-    folder_path = os.path.dirname(file_path)
-    print(folder_path)
-
     with open(file_path, "w") as f:
         f.write(data)
-
-    return file_path
 
 
 def mixin_skill_assessment_details(standards_list):
@@ -218,7 +210,7 @@ def record_struct(name, search, search_type, record_links, save, category, subca
     language = "general"
     name = re.sub("[^A-Za-z0-9]+", "", name)
     name = name + "_file_check"
-    save_path = "/assessments/" + save + "/evidence.json"
+    save_path = Path("assessments") / save / "evidence.json"
     # save_path = "/rubric/" + language + "/" + name + ".json"
 
     # Load records
@@ -239,4 +231,6 @@ def record_struct(name, search, search_type, record_links, save, category, subca
     records.append(record)
     save_records = json.dumps(records, indent=4)
     open_write(save_path, save_records)
-    return save_path
+    
+    print(f"Record Recorded to {save_path.parent}")
+

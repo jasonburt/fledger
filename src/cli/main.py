@@ -1,4 +1,5 @@
 import json
+import typer
 from pathlib import Path
 from typing import Optional
 
@@ -28,7 +29,7 @@ def build_skill_assessment(name: str):
     print(f"Building Standards in /standards folder {name}")
     # TODO standards index
     # Open Standards
-    file_and_path = "tests/data/" + name + ".json"
+    file_and_path = Path("tests/data/") / f"{name}.json"
 
     # Convert to markdown
     with open(file_and_path, "r", encoding="utf-8") as file:
@@ -41,7 +42,7 @@ def build_skill_assessment(name: str):
     )
     markdown = helpers.json_to_markdown_table(skills_assment_matrix)
     helpers.open_write(
-        "/assessments/user/overview_skills_and_project_matrix.md", markdown
+        Path("assessments/user/overview_skills_and_project_matrix.md"), markdown
     )
     print("Build Complete")
 
@@ -69,7 +70,7 @@ def build_project_assessment(name: str):
     )
     # TODO: Discovery functions
     markdown = helpers.json_to_markdown_table(project_assessment_matrix)
-    helpers.open_write("/assessments/project/overview_project_matrix.md", markdown)
+    helpers.open_write(Path("assessments/project/overview_project_matrix.md"), markdown)
 
 
 # python cli/main.py search 'README' --repo-path=Your/Cool/Repo --search-type=file
@@ -94,14 +95,12 @@ def search(
         print(str(len(results)) + " records found. First record below.")
         print(json.dumps(results[0], indent=4))
     else:
-        print("No results found, change search paramaters.")
+        print("No results found, change search parameters.")
     if save != "":
         # TODO fix this
         name = search
-        save_path = helpers.record_struct(
+        helpers.record_struct(
             name, search, search_type, results, save, category, subcategory
         )
-        print("Record Recorded at " + save_path)
-
 
     app()
