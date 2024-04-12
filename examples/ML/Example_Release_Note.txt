@@ -1,6 +1,6 @@
-Model version: 
+Model version:
 Release Date:
-Dataset: 
+Dataset:
 Model Name:
 Model Type:
 Model mode:
@@ -13,6 +13,5 @@ Output Tensor:
 
 
 Output classes:
-Notes: 
-Change from last release: 
-
+Notes:
+Change from last release:
