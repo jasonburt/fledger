@@ -28,6 +28,7 @@ def build_skill_assessment(name: str):
     # TODO standards index
     # Open Standards
     file_and_path = "tests/data/" + name + ".json"
+    skill_matrix_overview_path = "cli/templates/skill_matrix_overview.md"
 
     # Convert to markdown
     with open(file_and_path, "r", encoding="utf-8") as file:
@@ -38,7 +39,11 @@ def build_skill_assessment(name: str):
     skills_assment_matrix = helpers.mixin_skill_assessment_details(
         skills_assment_matrix
     )
-    markdown = helpers.json_to_markdown_table(skills_assment_matrix)
+    with open(skill_matrix_overview_path, "r") as overview_file:
+        skill_matrix_overview = overview_file.read()
+    markdown = skill_matrix_overview
+    markdown = markdown + " \n" + helpers.json_to_markdown_table(skills_assment_matrix)
+    print(markdown)
     helpers.open_write(
         "/assessments/user/overview_skills_and_project_matrix.md", markdown
     )
