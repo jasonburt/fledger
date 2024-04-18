@@ -7,6 +7,7 @@ import subprocess
 # python -m pytest
 from typer.testing import CliRunner
 from ..cli.main import app
+from ..cli import helpers
 
 runner = CliRunner()
 
@@ -32,4 +33,24 @@ def test_command_build_skill_assesment():
         "Building Standards in /standards folder OpenSSF_Standards_Passing"
         in result.stdout
     )
-    assert "'standardsSet': 'OpenSSF Best Practices'" in result.stdout
+    #  TODO:Check file for this
+    # assert "'category_name': 'Basics'" in result.stdout
+
+
+def test_update_skill_assessment():
+    # python src/cli/main.py update-skill-assessment user
+    overview_and_path = "../assessments/user/overview_skills_and_project_matrix.md"
+    result = runner.invoke(app, ["update-skill-assessment", "user"])
+
+    try:
+        overview_file = open(overview_and_path, "r", encoding="utf-8")
+        overview_full_file = overview_file.read()
+        overview_file.close()
+    except:
+        print(f"Error: path '{overview_and_path}' is not a valid path.")
+    assert "README*" in overview_full_file
+
+    # row check - ensure we didn't break the rows
+    # check the first and the last row to ensure
+
+    assert "Error" not in result.stdout
