@@ -35,16 +35,27 @@ def json_to_markdown_table(json_data):
 
     # Extract headers
     headers = list(data[0].keys())
+    print("headers")
+    print(headers)
 
     # Create the table header
     markdown_table = "| " + " | ".join(headers) + " |\n"
-
     # Create the separator row
     markdown_table += "| " + " | ".join(["---"] * len(headers)) + " |\n"
-
     # Populate the table rows
     for item in data:
-        row = "| " + " | ".join(str(item.get(header, "")) for header in headers) + " |"
+        # row = "| " + " | ".join(str(item.get(header, "")) for header in headers) + " |"
+        row = "| "
+        for header in headers:
+            # Check for array
+            value = item.get(header, "")
+            if isinstance(value, list):
+                value = "<br>".join(str(value_item) for value_item in value)
+            value = str(value)
+            if header != headers[-1]:
+                row += value + " | "
+            else:
+                row += value
         markdown_table += row + "\n"
 
     return markdown_table
@@ -60,7 +71,7 @@ def open_write(file_path: Path, data):
 
 
 def mixin_skill_assessment_details(standards_list):
-    merge = {"language": "", "example": "", "rubric_notes": "", "general_notes": ""}
+    merge = {"example": "", "notes": ""}
     for row in standards_list:
         row.update(merge)
     return standards_list
@@ -69,7 +80,6 @@ def mixin_skill_assessment_details(standards_list):
 def mixin_project_assessment_details(standards_list):
     merge = {"language": "", "example": "", "rubric_notes": "", "general_notes": ""}
     for row in standards_list:
-        print(row)
         row.update(merge)
     return standards_list
 
@@ -79,10 +89,9 @@ def flatten_categories(data):
     for category in data["categories"]:
         for subcategory in category["subcategories"]:
             flattened_item = {
-                "category_name": category["name"],
-                "subcategory_name": subcategory["name"],
-                "num_requirements": subcategory["numRequirements"],
-                "requirements": subcategory["requirements"],
+                "Category": category["name"],
+                "Subcategory": subcategory["name"],
+                "Requirements": subcategory["requirements"],
             }
             flattened.append(flattened_item)
     return flattened
