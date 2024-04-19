@@ -15,3 +15,5 @@ __pycache__/
 .obsidian/
 myenv/
 .DS_Store
+Pipfile
+Pipfile.lock

@@ -1,9 +1,12 @@
-import json, os, re
+import json
+import os
+import re
 import subprocess
+from pathlib import Path
 
 
 def check_project_settings():
-    # Adding project settings over and over is a pain, so can we cconfigure with ENV or Setup file?
+    # Adding project settings over and over is a pain, so can we configure with ENV or Setup file?
     # Environment Variable
     repo_path = os.environ["fledger_project_path"]
     # Configuration
@@ -58,18 +61,13 @@ def json_to_markdown_table(json_data):
     return markdown_table
 
 
-def open_write(file_path, data):
-    if "/" in file_path[0]:
-        file_path = file_path[1:]
-    folder_path = os.path.dirname(file_path)
-    print(folder_path)
+def open_write(file_path: Path, data):
+    file_path.parent.mkdir(parents=True, exist_ok=True)
 
-    if not os.path.exists(folder_path):
-        os.makedirs(folder_path)
-    f = open(file_path, "w")
-    f.write(data)
-    f.close()
-    return file_path
+    print(f"{file_path.name} was saved to {file_path.parent}")
+
+    with open(file_path, "w") as f:
+        f.write(data)
 
 
 def mixin_skill_assessment_details(standards_list):
@@ -219,7 +217,7 @@ def record_struct(name, search, search_type, record_links, save, category, subca
     language = "general"
     name = re.sub("[^A-Za-z0-9]+", "", name)
     name = name + "_file_check"
-    save_path = "/assessments/" + save + "/evidence.json"
+    save_path = Path("assessments") / save / "evidence.json"
     # save_path = "/rubric/" + language + "/" + name + ".json"
 
     # Load records
@@ -240,32 +238,42 @@ def record_struct(name, search, search_type, record_links, save, category, subca
     records.append(record)
     save_records = json.dumps(records, indent=4)
     open_write(save_path, save_records)
+    print(f"Record Recorded to {save_path.parent}")
     return save_path
 
+
 def markdown_to_json(inp):
-     lines = inp.split('\n')
-     ret=[]
-     keys=[]
-     for i,l in enumerate(lines):
-         if i==0:
-             keys=[_i.strip() for _i in l.split('|')]
-         elif i==1: continue
-         else:
-             ret.append({keys[_i]:v.strip() for _i,v in enumerate(l.split('|')) if  _i>0 and _i<len(keys)-1})
-     json_str = json.dumps(ret, indent = 4) 
-     return json.loads(json_str)
-     #print(mrkd2json(my_str))  
+    lines = inp.split("\n")
+    ret = []
+    keys = []
+    for i, l in enumerate(lines):
+        if i == 0:
+            keys = [_i.strip() for _i in l.split("|")]
+        elif i == 1:
+            continue
+        else:
+            ret.append(
+                {
+                    keys[_i]: v.strip()
+                    for _i, v in enumerate(l.split("|"))
+                    if _i > 0 and _i < len(keys) - 1
+                }
+            )
+    json_str = json.dumps(ret, indent=4)
+    return json.loads(json_str)
+    # print(mrkd2json(my_str))
+
 
 def find_line_number(term: str, path: str):
     line_count = 0
     try:
-        evidence_file = open(path, 'r', encoding='utf-8')
+        evidence_file = open(path, "r", encoding="utf-8")
         evidence_lines = evidence_file.readlines()
         evidence_file.close()
     except:
         print(f"Error: could not find evidence.json at '{path}'")
     for line in evidence_lines:
-        #print(line)
+        # print(line)
         if term in line:
             return line_count
         else:
@@ -273,4 +281,3 @@ def find_line_number(term: str, path: str):
     if line_count == 0:
         print("Search term not found in given file.")
         return 0
-
