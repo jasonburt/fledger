@@ -52,3 +52,8 @@ def test_update_skill_assessment():
     #check the first and the last row to ensure
         
     assert "Error" not in result.stdout
+
+#Testing BUILD / CLI
+# hatch build
+# python -m pip install -e .
+# which fledger

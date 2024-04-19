@@ -1,4 +1,5 @@
 import typer
+import os
 from typing import Optional
 
 try:
@@ -10,7 +11,7 @@ except:
 import json
 
 app = typer.Typer(no_args_is_help=True)
-
+environment = os.getenv('FLEDGER_ENVIRONMENT','production')
 
 @app.command()
 def getting_started(name: str):
@@ -24,14 +25,21 @@ def getting_started(name: str):
 @app.command()
 def build_skill_assessment(name: str):
     "Builds skill assessment using standards passed."
-    print(f"Building Standards in /standards folder {name}")
+    print(f"Building {name} assesment in /assessment/user folder")
     # TODO standards index
     # Open Standards
-    file_and_path = "tests/data/" + name + ".json"
+    if environment == 'production':
+        file_and_path = "standards/" + name + ".json"
+    else:
+        file_and_path = "tests/data/" + name + ".json"
 
     # Convert to markdown
-    with open(file_and_path, "r", encoding="utf-8") as file:
-        standards_json = json.load(file)
+    try:
+        with open(file_and_path, "r", encoding="utf-8") as file:
+            standards_json = json.load(file)
+    except:
+        print('No file '+file_and_path)
+        return
     # TODO: Discovery functions
     # print(standards_json)
     skills_assment_matrix = helpers.flatten_categories(standards_json)
@@ -132,12 +140,19 @@ def update_skill_assessment(folder: str):
 @app.command()
 def build_project_assessment(name: str):
     "Builds repo standards assessment in the standards file."
-    print(f"Building Standards in /assments/project folder {name}")
+    print(f"Building {name} assesment in /assessment/project folder")
     # Open Standards
-    file_and_path = "tests/data/" + name + ".json"
+    if environment == 'production':
+        file_and_path = "standards/" + name + ".json"
+    else:
+        file_and_path = "tests/data/" + name + ".json"
     # Convert to markdown
-    with open(file_and_path, "r", encoding="utf-8") as file:
-        standards_json = json.load(file)
+    try:
+        with open(file_and_path, "r", encoding="utf-8") as file:
+            standards_json = json.load(file)
+    except:
+        print(f"No file {file_and_path}")
+        return
     project_assment_matrix = helpers.flatten_categories(standards_json)
     project_assessment_matrix = helpers.mixin_project_assessment_details(
         project_assment_matrix
