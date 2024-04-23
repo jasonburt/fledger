@@ -65,9 +65,12 @@ are dumped into the 'Uncategorized' category (not yet created)
 def update_skill_assessment(folder: str):
     "Updates skill assessment using standards passed."
 
+    #TODO - 1) Check for content above the MD table - DO NOT OVERWRITE! Preserve this content. Edit will
+    #          likely be to markdown_to_json helper function.
+
     # routes are currently relative to src execution
-    overview_and_path = "../assessments/user/overview_skills_and_project_matrix.md"
-    evidence_and_path = "../assessments/user/evidence.json"
+    overview_and_path = "./assessments/user/overview_skills_and_project_matrix.md"
+    evidence_and_path = "./assessments/user/evidence.json"
 
     # try to open ../assessments/user/overview_skills_and_project_matrix.md
     try:
@@ -81,13 +84,21 @@ def update_skill_assessment(folder: str):
     try:
         evidence_file = open(evidence_and_path, "r", encoding="utf-8")
         evidence_full_file = evidence_file.read()
-        # print(evidence_full_file)
+        #print(evidence_full_file)
         evidence_file.close()
     except:
         print(f"Error: path '{evidence_and_path}' is not a valid path.")
 
     # collect the relevant records for updating
+
+    #print(overview_full_file)
+    table_start = overview_full_file.index('|')
+    pre_table_str = overview_full_file[:table_start]
+    overview_full_file = overview_full_file[table_start:]
+    #print(pre_table_str)
+    #return
     old_skills_overview_json = helpers.markdown_to_json(overview_full_file)
+    #print(old_skills_overview_json)
     full_evidence_json = json.loads(evidence_full_file)
 
     uncat_str = ""
@@ -96,13 +107,13 @@ def update_skill_assessment(folder: str):
         found = False
         # print(record)
         for row in old_skills_overview_json:
-            # print(row)
+            #print(row['Category'])
             try:
-                # print(f"Record: {record['category']} -- {record['subcategory']}")
-                # print(f"Row: {row['category_name']} -- {row['subcategory_name']}")
+                #print(f"Record: {record['category']} -- {record['subcategory']}")
+                #print(f"Row: {row['category_name']} -- {row['subcategory_name']}")
                 if (
-                    record["category"] == row["category_name"]
-                    and record["subcategory"] == row["subcategory_name"]
+                    record["category"] == row["Category"]
+                    and record["subcategory"] == row["Subcategory"]
                 ):
                     # need line number of top of 'record'. Verify this functionality as the evidence file grows.
                     line_number = helpers.find_line_number(
@@ -115,7 +126,7 @@ def update_skill_assessment(folder: str):
                         + "(../"
                         + evidence_and_path
                         + "#L="
-                        + line_number
+                        + str(line_number)
                         + ")"
                         "<ul><li>Records found: "
                         + str(len(record["records"]))
@@ -156,8 +167,9 @@ def update_skill_assessment(folder: str):
         )
 
     markdown = helpers.json_to_markdown_table(old_skills_overview_json)
+    markdown = pre_table_str + markdown
     helpers.open_write(
-        "../assessments/user/overview_skills_and_project_matrix.md", markdown
+        Path("./assessments/user/overview_skills_and_project_matrix.md"), markdown
     )
 
     return
