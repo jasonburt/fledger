@@ -1,10 +1,9 @@
 import json
 import typer
-<<<<<<< HEAD
+
 import os
-=======
 from pathlib import Path
->>>>>>> main
+
 from typing import Optional
 
 try:
