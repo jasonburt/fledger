@@ -281,3 +281,20 @@ def find_line_number(term: str, path: str):
     if line_count == 0:
         print("Search term not found in given file.")
         return 0
+
+def trim_document_by_terms(skills_matrix, skill_list):
+    keep_row = False
+    new_data = []
+   
+    for row in skills_matrix:
+        keep_row = False
+        for term in skill_list:
+            if keep_row == True:
+                break
+            for sentence in row['Requirements']:
+                if term in sentence:
+                    row['notes'] = row['notes'] + "<ul><li>Term matched: **'" + term + "'**</li></ul>"
+                    new_data.append(row)
+                    keep_row = True
+                    break
+    return new_data
