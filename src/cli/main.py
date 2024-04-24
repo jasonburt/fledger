@@ -344,7 +344,9 @@ def build_job_assessment(name: str, skill_str: str):
                 break
             for sentence in row['Requirements']:
                 if term in sentence:
+                    row['notes'] = row['notes'] + "<ul><li>Term matched: **'" + term + "'**</li></ul>"
                     new_data.append(row)
+
                     keep_row = True
                     break
          
