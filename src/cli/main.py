@@ -65,9 +65,6 @@ are dumped into the 'Uncategorized' category (not yet created)
 def update_skill_assessment(folder: str):
     "Updates skill assessment using standards passed."
 
-    #TODO - 1) Check for content above the MD table - DO NOT OVERWRITE! Preserve this content. Edit will
-    #          likely be to markdown_to_json helper function.
-
     # routes are currently relative to src execution
     overview_and_path = "./assessments/user/overview_skills_and_project_matrix.md"
     evidence_and_path = "./assessments/user/evidence.json"
@@ -91,26 +88,21 @@ def update_skill_assessment(folder: str):
 
     # collect the relevant records for updating
 
-    #print(overview_full_file)
+    #collect the text before and after the md table for preservation
     table_start = overview_full_file.index('|')
     table_end = overview_full_file.rfind('|')
     pre_table_str = overview_full_file[:table_start]
     post_table_str = overview_full_file[table_end:]
-    print(f"The post-table str: {post_table_str}")
     overview_full_file = overview_full_file[table_start:table_end]
-    #print(pre_table_str)
-    #return
+    
     old_skills_overview_json = helpers.markdown_to_json(overview_full_file)
-    #print(old_skills_overview_json)
     full_evidence_json = json.loads(evidence_full_file)
-
     uncat_str = ""
 
     for record in full_evidence_json:
         found = False
         # print(record)
         for row in old_skills_overview_json:
-            #print(row['Category'])
             try:
                 #print(f"Record: {record['category']} -- {record['subcategory']}")
                 #print(f"Row: {row['category_name']} -- {row['subcategory_name']}")
@@ -138,7 +130,7 @@ def update_skill_assessment(folder: str):
                     row["example"] = example_str
                     found = True
             except:
-                pass  # handles the empty rows at the end of overview_skills_and_project.md. No need to alert the user.
+                pass  # handles the potentially empty rows at the end of overview_skills_and_project.md. No need to alert the user.
         if found is False:
             # here, we assign the record to the "uncategorized" area of the md
             line_number = helpers.find_line_number(record["pattern"], evidence_and_path)
@@ -170,7 +162,7 @@ def update_skill_assessment(folder: str):
         )
 
     markdown = helpers.json_to_markdown_table(old_skills_overview_json)
-    markdown = pre_table_str + markdown + post_table_str
+    markdown = pre_table_str + markdown + post_table_str 
     helpers.open_write(
         Path("./assessments/user/overview_skills_and_project_matrix.md"), markdown
     )
@@ -181,9 +173,6 @@ def update_skill_assessment(folder: str):
 @app.command()
 def update_job_assessment(folder: str):
     "Updates job assessment using standards passed."
-
-    #TODO - 1) Check for content above the MD table - DO NOT OVERWRITE! Preserve this content. Edit will
-    #          likely be to markdown_to_json helper function.
 
     # routes are currently relative to src execution
     overview_and_path = "./assessments/user/job_reqs_matrix.md"
@@ -206,28 +195,21 @@ def update_job_assessment(folder: str):
     except:
         print(f"Error: path '{evidence_and_path}' is not a valid path.")
 
-    # collect the relevant records for updating
-
-    #print(overview_full_file)
+    #collect the relevant records for updating
+    #collect the text before and after the md table for preservation
     table_start = overview_full_file.index('|')
     table_end = overview_full_file.rfind('|')
     pre_table_str = overview_full_file[:table_start]
     post_table_str = overview_full_file[table_end:]
-    print(f"The post-table str: {post_table_str}")
     overview_full_file = overview_full_file[table_start:table_end]
-    #print(pre_table_str)
-    #return
     old_skills_overview_json = helpers.markdown_to_json(overview_full_file)
-    #print(old_skills_overview_json)
     full_evidence_json = json.loads(evidence_full_file)
 
     uncat_str = ""
 
     for record in full_evidence_json:
         found = False
-        # print(record)
         for row in old_skills_overview_json:
-            #print(row['Category'])
             try:
                 #print(f"Record: {record['category']} -- {record['subcategory']}")
                 #print(f"Row: {row['category_name']} -- {row['subcategory_name']}")
@@ -322,17 +304,14 @@ def build_job_assessment(name: str, skill_str: str):
     )
     with open(skill_matrix_overview_path, "r") as overview_file:
         skill_matrix_overview = overview_file.read()
-    #print(skill_matrix_overview)
-    #print(skills_assment_matrix) #bingo
         
-    #remove filler words like 'and'
+    #remove filler words like 'and'. Any other modifications we should make to the list?
     if 'and ' in skill_str:
         #print(term)
         skill_str = skill_str.replace('and ', '')
 
     skill_list = skill_str.split(", ") 
     #print(skill_list)
-    
         
     keep_row = False
     new_data = []
@@ -346,11 +325,9 @@ def build_job_assessment(name: str, skill_str: str):
                 if term in sentence:
                     row['notes'] = row['notes'] + "<ul><li>Term matched: **'" + term + "'**</li></ul>"
                     new_data.append(row)
-
                     keep_row = True
                     break
          
-    
     markdown = skill_matrix_overview
     markdown = markdown + " \n" + helpers.json_to_markdown_table(new_data)
 
