@@ -52,15 +52,14 @@ def build_skill_assessment(name: str):
     print("Build Complete")
 
 
-# python cli/main.py update-skill-assessment user (updates skill assessment in user folder)
+# python cli/main.py update-skill-assessment user 
+#  (updates skill assessment in user folder)
 """
 This function searches the /{folder} for the overview_skills_and_project_matrix.md file to be updated.
 It scans the '/assessments/user/evidence.json' file to apply existing records to the appropriate 'example'
 cell in the .md file, based on the record's Category and Sub-Category values. Records without these values
 are dumped into the 'Uncategorized' category (not yet created)
 """
-
-
 @app.command()
 def update_skill_assessment(folder: str):
     "Updates skill assessment using standards passed."
@@ -118,8 +117,8 @@ def update_skill_assessment(folder: str):
                         "["
                         + record["pattern"]
                         + "]"
-                        + "(../"
-                        + evidence_and_path
+                        + "("
+                        + "evidence.json" #changing from 'evidence_and_path' var to fix pathing
                         + "#L="
                         + str(line_number)
                         + ")"
@@ -169,7 +168,8 @@ def update_skill_assessment(folder: str):
 
     return
 
-#python cli/main.py update-job-assessment user (updates skill assessment in user folder)
+#python cli/main.py update-job-assessment user
+# (updates skill assessment in 'user' folder)
 @app.command()
 def update_job_assessment(folder: str):
     "Updates job assessment using standards passed."
@@ -225,8 +225,8 @@ def update_job_assessment(folder: str):
                         "["
                         + record["pattern"]
                         + "]"
-                        + "(../"
-                        + evidence_and_path
+                        + "("
+                        + "evidence.json" #changing from 'evidence_and_path' var to fix pathing
                         + "#L="
                         + str(line_number)
                         + ")"
