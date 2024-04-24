@@ -35,8 +35,8 @@ def json_to_markdown_table(json_data):
 
     # Extract headers
     headers = list(data[0].keys())
-    print("headers")
-    print(headers)
+    #print("headers")
+    #print(headers)
 
     # Create the table header
     markdown_table = "| " + " | ".join(headers) + " |\n"

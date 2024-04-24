@@ -9,6 +9,8 @@ fledger search 'README*' --search-type=file --save=user
 ```sh
 fledger update-skill-assesment
 ```
+My name is reed
+
 
 | Category | Subcategory | Requirements | example | notes |
 | --- | --- | --- | --- | --- |
@@ -34,3 +36,5 @@ fledger update-skill-assesment
 | Analysis | Dynamic Code Analysis | It is SUGGESTED that at least one dynamic analysis tool be applied to any proposed major production release of the software before its release.<br>It is SUGGESTED that if the software produced by the project includes software written using a memory-unsafe language (e.g., C or C++), then at least one dynamic tool (e.g., a fuzzer or web application scanner) be routinely used in combination with a mechanism to detect memory safety problems such as buffer overwrites. If the project does not produce software written in a memory-unsafe language, choose 'not applicable' (N/A). {N/A allowed}<br>It is SUGGESTED that the project use a configuration for at least some dynamic analysis (such as testing or fuzzing) which enables many assertions. In many cases these assertions should not be enabled in production builds.<br>All medium and higher severity exploitable vulnerabilities discovered with dynamic code analysis MUST be fixed in a timely way after they are confirmed. |  | 
 |  |  |  |  | 
 |  |  |  |  | 
+| 
+Reed is my name
