@@ -5,7 +5,7 @@ Fledger is a Python Framework that simplifies software engineering and developme
 
 
 
-## High Level Areas Fledgler covers.
+## High Level Areas Fledger covers.
 - Quality (Standards, Testing, Performance)
 - Documentation (READMEs, Legal, Guides, CheatSheets)
 - Release Notes
@@ -40,7 +40,7 @@ git checkout xxx project
 ```
 
 ### Project Assessment
-Do an assessment scan of the project to see if its up to [OSS Standards](https://www.bestpractices.dev/en/criteria/0?details=true&rationale=true).
+Do an assessment scan of the project to see if its up to [OSS Standards](https://www.bestpractices.dev/en/criteria/0?details=true&rationale=true). You can copy the example file from this project.
 ```sh
 fledger build-project-assesment openSSFBestPractices
 ```
@@ -48,7 +48,7 @@ fledger build-project-assesment openSSFBestPractices
 This will generate an output in the **/assessments/project/overview_project.md** folder.
 
 ```sh
-fledger search 'README*' --search-type=file --save=user
+fledger search 'README*' --search-type=file --save=project --category=Basics --subcategory=Documentation
 ```
 ### User Assessment
 Creates a user skills and project matrix using the standard entered
@@ -60,7 +60,7 @@ fledger build-skill-assesment openSSFBestPractices
 This generates an assessment file in **/assessments/users/overview_skills_and_project.md**.
 Next create a **Record**
 ```sh
-fledger search 'README*' --search-type=file --save=user
+fledger search 'README*' --search-type=file --save=user --category=Basics --subcategory=Documentation
 ```
 This creates a record with a code example that matches the pattern in the code. **/assessments/users/evidence.json**
 
