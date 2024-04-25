@@ -11,6 +11,9 @@ try:
 except:
     import helpers
 
+import importlib.resources as pkg_resources
+
+from cli import templates
 
 import json
 
@@ -33,13 +36,14 @@ def build_skill_assessment(name: str, skills: str = ''):
     print(f"Building {name} assesment in /assessment/user folder")
     # TODO standards index
     # Open Standards
-    # if environment == 'production':
-    #     file_and_path = "standards/" + name + ".json"
-    # else:
-    #     file_and_path = "tests/data/" + name + ".json"
+    if environment == 'production':
+        file_and_path_string = "standards/" + name + ".json"
+    else:
+        file_and_path_string = "src/cli/tests/data/" + name + ".json"
 
-    file_and_path = Path("tests/data") / f"{name}.json"
-    skill_matrix_overview_path = "cli/templates/skill_matrix_overview.md"
+    # file_and_path = Path("tests/data") / f"{name}.json"
+    file_and_path = Path(file_and_path_string)
+    skill_matrix_overview_path = "cli/templates/skill_matrix_overview.md" 
 
 
     # Convert to markdown
@@ -47,7 +51,7 @@ def build_skill_assessment(name: str, skills: str = ''):
         with open(file_and_path, "r", encoding="utf-8") as file:
             standards_json = json.load(file)
     except:
-        print('No file '+file_and_path)
+        print('No file '+file_and_path_string)
         return
     # TODO: Discovery functions
     # print(standards_json)
@@ -55,8 +59,11 @@ def build_skill_assessment(name: str, skills: str = ''):
     skills_assment_matrix = helpers.mixin_skill_assessment_details(
         skills_assment_matrix
     )
-    with open(skill_matrix_overview_path, "r") as overview_file:
-        skill_matrix_overview = overview_file.read()
+    try:
+        with open(skill_matrix_overview_path, "r") as overview_file:
+            skill_matrix_overview = overview_file.read()
+    except:
+        skill_matrix_overview = pkg_resources.read_text(templates, "skill_matrix_overview.md")
 
     #'if' block to handle optional argument of job qualities/skills, which is used to filter down the master overview md file
     if skills != '':
