@@ -206,13 +206,14 @@ def build_project_assessment(name: str):
 
     print(f"Building {name} assesment in /assessment/project folder")
     # Open Standards
-    # if environment == 'production':
-    #     file_and_path = "standards/" + name + ".json"
-    # else:
-    #     file_and_path = "tests/data/" + name + ".json"
+    if environment == 'production':
+        file_and_path_string = "standards/" + name + ".json"
+    else:
+        file_and_path_string = "src/cli/tests/data/" + name + ".json"
     #print(f"Building Standards in /assessments/project folder {name}")
     # Open Standards
-    file_and_path = Path("src/tests/data") / f"{name}.json"
+    file_and_path = Path(file_and_path_string)
+
 
     # Convert to markdown
     try:
