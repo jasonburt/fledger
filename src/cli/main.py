@@ -51,7 +51,7 @@ def build_skill_assessment(name: str, skills: str = ''):
         with open(file_and_path, "r", encoding="utf-8") as file:
             standards_json = json.load(file)
     except:
-        print('No file '+file_and_path_string)
+        print('FileNotFoundError:'+file_and_path_string)
         return
     # TODO: Discovery functions
     # print(standards_json)
@@ -220,7 +220,7 @@ def build_project_assessment(name: str):
         with open(file_and_path, "r", encoding="utf-8") as file:
             standards_json = json.load(file)
     except:
-        print(f"No file {file_and_path}")
+        print(f"FileNotFoundError: {file_and_path}")
         return
     project_assment_matrix = helpers.flatten_categories(standards_json)
     project_assessment_matrix = helpers.mixin_project_assessment_details(
@@ -234,7 +234,7 @@ def build_project_assessment(name: str):
 # python cli/main.py search 'README' --repo-path=Your/Cool/Repo --search-type=file
 # python cli/main.py search 'README*' --search-type=file
 # python cli/main.py search 'README*' --search-type=file --save
-# python cli/main.py search 'README*' --search-type=file --save=user --category=Basic --subcategory=Documentation
+# python cli/main.py search 'README*' --search-type=file --save=user --category=Basics --subcategory=Documentation
 @app.command()
 def search(
     search: str,

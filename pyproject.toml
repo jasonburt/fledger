@@ -6,7 +6,7 @@ build-backend = "hatchling.build"
 [project]
 name = "fledger"
 #dynamic = ["version"]
-version = '0.1.0'
+version = '0.1.1'
 description = "Fledger is a Python Framework that simplifies software engineering and development under standards. "
 readme = "README.md"
 requires-python = ">=3.8"
@@ -27,7 +27,7 @@ classifiers = [
   "Programming Language :: Python :: Implementation :: PyPy",
 ]
 dependencies = [
-"typer"
+"typer==0.3.2"
 ]
 
 [project.urls]
