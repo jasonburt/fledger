@@ -25,6 +25,14 @@ def test_command_search_code():
     assert "records found. First record below." in result.stdout
     assert '"path_and_file": "cli/helpers.py' in result.stdout
 
+def test_command_search_code_save():
+    # python src/cli/main.py search 'LICENSE' --search-type=file --save=project --category=Basics --subcategory="FLOSS License"
+    #TODO Scenario : First Build,Second Record.
+    result = runner.invoke(app, ["search", "README*", "--search-type=code","--save=project","--category=Basics","--subcategory='FLOSS License'"])
+    assert "records found. First record below." in result.stdout
+    assert '"path_and_file": "cli/helpers.py' in result.stdout
+    assert 'evidence.json was saved to assessments/project' in result.stdout
+
 
 def test_command_build_skill_assesment():
     # python src/cli/main.py build-skill-assessment OpenSSF_Standards_Passing
