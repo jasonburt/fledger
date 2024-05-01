@@ -78,7 +78,7 @@ def mixin_skill_assessment_details(standards_list):
 
 
 def mixin_project_assessment_details(standards_list):
-    merge = {"language": "", "example": "", "rubric_notes": "", "general_notes": ""}
+    merge = { "example": "", "notes": ""}
     for row in standards_list:
         row.update(merge)
     return standards_list
