@@ -1,0 +1,47 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# https://hatch.pypa.io/1.9/config/metadata/#license Cheat sheet
+[project]
+name = "fledger"
+#dynamic = ["version"]
+version = '0.1.1'
+description = "Fledger is a Python Framework that simplifies software engineering and development under standards. "
+readme = "README.md"
+requires-python = ">=3.8"
+license = "Apache-2.0"
+keywords = []
+authors = [
+  { name = "Jason Burt", email = "jason2burt+fledger@gmail.com" },
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Programming Language :: Python :: Implementation :: PyPy",
+]
+dependencies = [
+"typer==0.3.2"
+]
+
+[project.urls]
+Documentation = "https://github.com/jasonburt/fledger/blob/main/README.md"
+Issues = "https://github.com/jasonburt/fledger/issues"
+Source = "https://github.com/jasonburt/fledger"
+
+[tool.hatch.version]
+path = "src/__about__.py"
+#this would be if dynamic is defined and you want to show the version
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cli"]
+
+[project.scripts]
+fledger = "cli.main:app"
+

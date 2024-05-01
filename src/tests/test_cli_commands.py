@@ -69,12 +69,9 @@ def test_command_update_skill_assessment():
     # check the first and the last row to ensure
 
     assert "Error" not in result.stdout
-    
 
-
-    
-        
-	
-        
-        
-    
+#TODO
+#Testing BUILD / CLI
+# hatch build
+# python -m pip install -e .
+# which fledger

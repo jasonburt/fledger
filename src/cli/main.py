@@ -1,6 +1,9 @@
 import json
 import typer
+
+import os
 from pathlib import Path
+
 from typing import Optional
 
 try:
@@ -8,11 +11,14 @@ try:
 except:
     import helpers
 
+import importlib.resources as pkg_resources
+
+from cli import templates
 
 import json
 
 app = typer.Typer(no_args_is_help=True)
-
+environment = os.getenv('FLEDGER_ENVIRONMENT','production')
 
 @app.command()
 def getting_started(name: str):
@@ -27,23 +33,37 @@ def getting_started(name: str):
 @app.command()
 def build_skill_assessment(name: str, skills: str = ''):
     "Builds skill assessment using standards passed."
-    print(f"Building Standards in /standards folder {name}")
+    print(f"Building {name} assesment in /assessment/user folder")
     # TODO standards index
     # Open Standards
-    file_and_path = Path("tests/data") / f"{name}.json"
-    skill_matrix_overview_path = "cli/templates/skill_matrix_overview.md"
+    if environment == 'production':
+        file_and_path_string = "standards/" + name + ".json"
+    else:
+        file_and_path_string = "src/cli/tests/data/" + name + ".json"
+
+    # file_and_path = Path("tests/data") / f"{name}.json"
+    file_and_path = Path(file_and_path_string)
+    skill_matrix_overview_path = "cli/templates/skill_matrix_overview.md" 
+
 
     # Convert to markdown
-    with open(file_and_path, "r", encoding="utf-8") as file:
-        standards_json = json.load(file)
+    try:
+        with open(file_and_path, "r", encoding="utf-8") as file:
+            standards_json = json.load(file)
+    except:
+        print('FileNotFoundError:'+file_and_path_string)
+        return
     # TODO: Discovery functions
     # print(standards_json)
     skills_assment_matrix = helpers.flatten_categories(standards_json)
     skills_assment_matrix = helpers.mixin_skill_assessment_details(
         skills_assment_matrix
     )
-    with open(skill_matrix_overview_path, "r") as overview_file:
-        skill_matrix_overview = overview_file.read()
+    try:
+        with open(skill_matrix_overview_path, "r") as overview_file:
+            skill_matrix_overview = overview_file.read()
+    except:
+        skill_matrix_overview = pkg_resources.read_text(templates, "skill_matrix_overview.md")
 
     #'if' block to handle optional argument of job qualities/skills, which is used to filter down the master overview md file
     if skills != '':
@@ -183,12 +203,25 @@ def update_skill_assessment(folder: str):
 @app.command()
 def build_project_assessment(name: str):
     "Builds repo standards assessment in the standards file."
-    print(f"Building Standards in /assessments/project folder {name}")
+
+    print(f"Building {name} assesment in /assessment/project folder")
     # Open Standards
-    file_and_path = Path("src/tests/data") / f"{name}.json"
+    if environment == 'production':
+        file_and_path_string = "standards/" + name + ".json"
+    else:
+        file_and_path_string = "src/cli/tests/data/" + name + ".json"
+    #print(f"Building Standards in /assessments/project folder {name}")
+    # Open Standards
+    file_and_path = Path(file_and_path_string)
+
+
     # Convert to markdown
-    with open(file_and_path, "r", encoding="utf-8") as file:
-        standards_json = json.load(file)
+    try:
+        with open(file_and_path, "r", encoding="utf-8") as file:
+            standards_json = json.load(file)
+    except:
+        print(f"FileNotFoundError: {file_and_path}")
+        return
     project_assment_matrix = helpers.flatten_categories(standards_json)
     project_assessment_matrix = helpers.mixin_project_assessment_details(
         project_assment_matrix
@@ -201,7 +234,7 @@ def build_project_assessment(name: str):
 # python cli/main.py search 'README' --repo-path=Your/Cool/Repo --search-type=file
 # python cli/main.py search 'README*' --search-type=file
 # python cli/main.py search 'README*' --search-type=file --save
-# python cli/main.py search 'README*' --search-type=file --save=user --category=Basic --subcategory=Documentation
+# python cli/main.py search 'README*' --search-type=file --save=user --category=Basics --subcategory=Documentation
 @app.command()
 def search(
     search: str,

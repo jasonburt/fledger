@@ -15,5 +15,8 @@ __pycache__/
 .obsidian/
 myenv/
 .DS_Store
+
+dist/
+bin/
 Pipfile
 Pipfile.lock
