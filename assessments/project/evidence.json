@@ -1,0 +1,23 @@
+[
+    {
+        "name": "README_file_check",
+        "pattern": "README*",
+        "type": "file",
+        "category": "Basics",
+        "subcategory": "Documentation",
+        "description": "",
+        "records": [
+            [
+                {
+                    "path_and_file": "README.md",
+                    "location": "",
+                    "code": "",
+                    "tags": [
+                        "build"
+                    ],
+                    "usage": "build"
+                }
+            ]
+        ]
+    }
+]
