@@ -28,8 +28,8 @@ def getting_started(name: str):
     )
 
 
-# python cli/main.py build-skill-assessment OpenSSF_Standards_Passing
-# python cli/main.py build-skill-assessment OpenSSF_Standards_Passing --skills='documentation, reliability, efficiency, bug reports, and performance of products, software, bug report'
+# python cli/main.py build-skill-assessment OpenSSF
+# python cli/main.py build-skill-assessment OpenSSF --skills='documentation, reliability, efficiency, bug reports, and performance of products, software, bug report'
 @app.command()
 def build_skill_assessment(name: str, skills: str = ''):
     "Builds skill assessment using standards passed."
@@ -199,7 +199,7 @@ def update_skill_assessment(folder: str):
     return
 
 # python cli/main.py build-project-assessment TwilioAITRust
-# python cli/main.py build-project-assessment OpenSSF_Standards_Passing
+# python cli/main.py build-project-assessment OpenSSF
 @app.command()
 def build_project_assessment(name: str):
     "Builds repo standards assessment in the standards file."
