@@ -27,6 +27,8 @@ def getting_started(name: str):
         f"Hello! Welcome to fledger! To get started read the README for a list of example and connect with the project at https://github.com/jasonburt/fledger."
     )
 
+#test alias
+#alias bfledger='python src/cli/main.py'
 
 # python cli/main.py build-skill-assessment OpenSSF_Standards_Passing
 # python cli/main.py build-skill-assessment OpenSSF_Standards_Passing --skills='documentation, reliability, efficiency, bug reports, and performance of products, software, bug report'
