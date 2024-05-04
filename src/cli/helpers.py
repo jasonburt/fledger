@@ -232,9 +232,8 @@ def record_struct(name, search, search_type, record_links, save, category, subca
             records_data = records_file.read()
         records = json.loads(records_data)
         print(f"Existing Records: {len(records)}")
-    except:
+    except FileNotFoundError as fnf_errorr:
         print(f"FileNotFoundError:'{save_path}'.")
-        records = []
 
     
 
