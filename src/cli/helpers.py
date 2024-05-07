@@ -4,6 +4,7 @@ import re
 import subprocess
 from pathlib import Path
 
+environment = os.getenv('FLEDGER_ENVIRONMENT','production')
 
 def check_project_settings():
     # Adding project settings over and over is a pain, so can we configure with ENV or Setup file?
@@ -78,7 +79,7 @@ def mixin_skill_assessment_details(standards_list):
 
 
 def mixin_project_assessment_details(standards_list):
-    merge = {"language": "", "example": "", "rubric_notes": "", "general_notes": ""}
+    merge = { "example": "", "notes": ""}
     for row in standards_list:
         row.update(merge)
     return standards_list
@@ -217,15 +218,26 @@ def record_struct(name, search, search_type, record_links, save, category, subca
     language = "general"
     name = re.sub("[^A-Za-z0-9]+", "", name)
     name = name + "_file_check"
-    save_path = Path("assessments") / save / "evidence.json"
+    if environment == 'production':
+        save_path = Path("assessments/"+save+"/evidence.json")
+    else:
+        print('running as dev')
+        save_path = Path("assessments/"+save+"/evidence.json")
+    
     # save_path = "/rubric/" + language + "/" + name + ".json"
 
     # Load records
     try:
-        with open(save_path, "r") as records_file:
-            records = json.loads(records_file)
-    except:
-        records = []
+        with open(save_path, "r")as records_file:
+            records_data = records_file.read()
+        records = json.loads(records_data)
+        print(f"Existing Records: {len(records)}")
+    except FileNotFoundError as fnf_errorr:
+        print(f"FileNotFoundError:'{save_path}'.")
+
+    
+
+    
     record = {
         "name": name,
         "pattern": search,
@@ -235,10 +247,13 @@ def record_struct(name, search, search_type, record_links, save, category, subca
         "description": "",
         "records": [record_links],
     }
-    records.append(record)
-    save_records = json.dumps(records, indent=4)
-    open_write(save_path, save_records)
-    print(f"Record Recorded to {save_path.parent}")
+    if record in records:
+        print(f"Existing Record, not updating")
+    else:
+        records.append(record)
+        save_records = json.dumps(records, indent=4)
+        open_write(save_path, save_records)
+        print(f"Record Recorded to {save_path.parent}")
     return save_path
 
 
