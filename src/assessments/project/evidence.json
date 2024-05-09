@@ -1,0 +1,66 @@
+[
+    {
+        "name": "README_file_check",
+        "pattern": "README*",
+        "type": "file",
+        "category": "Basics",
+        "subcategory": "FLOSS License",
+        "description": "",
+        "records": [
+            [
+                {
+                    "path_and_file": "README.md",
+                    "location": "",
+                    "code": "",
+                    "tags": [
+                        "build"
+                    ],
+                    "usage": "build"
+                }
+            ]
+        ]
+    },
+    {
+        "name": "README_file_check",
+        "pattern": "README*",
+        "type": "file",
+        "category": "Basics",
+        "subcategory": "FLOSS License",
+        "description": "",
+        "records": [
+            [
+                {
+                    "path_and_file": "README.md",
+                    "location": "",
+                    "code": "",
+                    "tags": [
+                        "build"
+                    ],
+                    "usage": "build"
+                }
+            ]
+        ]
+    },
+    {
+        "name": "License_file_check",
+        "pattern": "License",
+        "type": "file",
+        "category": "Basics",
+        "subcategory": "FLOSS License",
+        "description": "",
+        "records": [
+            []
+        ]
+    },
+    {
+        "name": "LICENSE_file_check",
+        "pattern": "LICENSE",
+        "type": "file",
+        "category": "Basics",
+        "subcategory": "FLOSS License",
+        "description": "",
+        "records": [
+            []
+        ]
+    }
+]

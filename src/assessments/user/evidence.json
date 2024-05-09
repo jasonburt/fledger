@@ -1,0 +1,13 @@
+[
+    {
+        "name": "LICENSE_file_check",
+        "pattern": "LICENSE*",
+        "type": "file",
+        "category": "Basics",
+        "subcategory": "FLOSS License",
+        "description": "",
+        "records": [
+            []
+        ]
+    }
+]

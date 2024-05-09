@@ -1,0 +1,78 @@
+[
+    {
+        "name": "LICENSE_file_check",
+        "pattern": "LICENSE",
+        "type": "file",
+        "category": "Basics",
+        "subcategory": "FLOSS License",
+        "description": "",
+        "records": [
+            [
+                {
+                    "path_and_file": "LICENSE",
+                    "location": "",
+                    "code": "",
+                    "tags": [],
+                    "usage": ""
+                }
+            ]
+        ]
+    },
+    {
+        "name": "LICENSE_file_check",
+        "pattern": "LICENSE",
+        "type": "file",
+        "category": "Basics",
+        "subcategory": "FLOSS License",
+        "description": "",
+        "records": [
+            [
+                {
+                    "path_and_file": "LICENSE",
+                    "location": "",
+                    "code": "",
+                    "tags": [],
+                    "usage": ""
+                }
+            ]
+        ]
+    },
+    {
+        "name": "LICENSE_file_check",
+        "pattern": "LICENSE",
+        "type": "file",
+        "category": "Basics",
+        "subcategory": "FLOSS License",
+        "description": "",
+        "records": [
+            [
+                {
+                    "path_and_file": "LICENSE",
+                    "location": "",
+                    "code": "",
+                    "tags": [],
+                    "usage": ""
+                }
+            ]
+        ]
+    },
+    {
+        "name": "LICENSE_file_check",
+        "pattern": "LICENSE",
+        "type": "file",
+        "category": "Basics",
+        "subcategory": "FLOSS License",
+        "description": "",
+        "records": [
+            [
+                {
+                    "path_and_file": "LICENSE",
+                    "location": "",
+                    "code": "",
+                    "tags": [],
+                    "usage": ""
+                }
+            ]
+        ]
+    }
+]
