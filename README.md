@@ -1,9 +1,13 @@
 # Fledger
 Fledging is the stage in a flying animal's life between hatching or birth and becoming capable of flight.
 
-Fledger is a Python Framework that simplifies software engineering and development under standards. It can be used by internal and opensource teams to help identify gaps, bring new team members up to speed, and aid in evidence collection. For people in training such as Software Engineers, Product Managers, or other positions it can be used to create a training reference guide using an OpenSource project as an example.
+Fledger's goal is to use real world open source projects and open source standards / best practices to help software engineers with their general career. We hope as this helps you will  learn, grow, and contribute to the community.
 
+- Fledger provides a basic CLI to generate assessments and records.
+- Industry Category Advisors provide summary best practices 
+- Open Source Partners help drive adoption of practice using open source.
 
+"One of the best things you can do is to find something you're passionate about and contribute to it."
 
 ## High Level Areas Fledger covers.
 - Quality (Standards, Testing, Performance)
@@ -11,79 +15,24 @@ Fledger is a Python Framework that simplifies software engineering and developme
 - Release Notes
 - Security
 
-### Who is this for?
-
-- **Engineering Job Seekers**
-  - "Study and Build best practices using internal or Opensource projects instead of Leet Code."
-  - Use best in class standards and opensource code bases to learn
-  - Have actual records of your work
-  - Have a structured guide to help you
-- **Technical Startup founders**, **Engineering Managers** trying to improve their hiring process.
-  - Building Rubrics, Scores, and allignment can take weeks. - (Verified)
-  - Reduce Scoring and Feedback time - (Verified)
-- **Opensource founders**
-  - Use it to get started correctly just getting started can take 2+ weeks to it right. - (Verified)
-  - Use it to assess and get the help you need on your project (FEEDBACK TBD)
-- **Security & Compliance Teams**
-  - Use it to reduce friction and drive adoption for training requirements, interviews, and other relevant areas. (FEEDBACK TBD)
-
-
 ### Getting Started
 
-```sh
-pip install fledger
-```
+**For Job Seeks
 
-Checkout a project in the language your interested in prepping for. Try to find a [OpenSSF](https://www.bestpractices.dev/en/projects) project that matches the domain experience or stack of the company. Create a clone of the project to checkout from.
-```sh
-git checkout xxx project
-```
+Below are a number of categories, each category has an overview, interview guide, and how to work with partner teams in that category. The categories are basic prep, intended to be very light. Once you have tried it you can apply it for specific roles or companies you are interested in. You will have a better understanding to talk with a potential employer, an artifact that you went through, and it will set you up for you first 30-60-90 days as well as working with other teams.
 
-### Project Assessment
-Do an assessment scan of the project to see if its up to [OSS Standards](https://www.bestpractices.dev/en/criteria/0?details=true&rationale=true). You can copy the example file from this project.
-```sh
-fledger build-project-assesment openSSFBestPractices
-```
+Below are a set of Categories written in partnership with Industry experts, pick a category you are interested in to get started.
 
-This will generate an output in the **/assessments/project/overview_project.md** folder.
+- [[SECURITY_CATEGORY]] - v1
+- Usability - coming soon
+- Accessibility - coming soon
+- Quality - coming soon
 
-```sh
-fledger search 'README*' --search-type=file --save=project --category=Basics --subcategory=Documentation
-```
-### User Assessment
-Creates a user skills and project matrix using the standard entered
-Do an assessment scan of the project to see if its up to [OSS Standards](https://www.bestpractices.dev/en/criteria/0?details=true&rationale=true).
-```sh
-fledger build-skill-assesment openSSFBestPractices
-```
+**For Internal Teams**
+Fledger can be used to help onboard, train, and support team members. More to come. : )
 
-This generates an assessment file in **/assessments/users/overview_skills_and_project.md**.
-Next create a **Record**
-```sh
-fledger search 'README*' --search-type=file --save=user --category=Basics --subcategory=Documentation
-```
-This creates a record with a code example that matches the pattern in the code. **/assessments/users/evidence.json**
-
-Update your user assessment with records by running the update command.
-```sh
-fledger update-skill-assessment user
-```
-
-This updates the Skills and Project matrix.
-
-**Backlog Functionality**
-Optionally, you can fix some code and save the commit.
-```sh
-git add .
-git commit -m "Privacy Standards update"
-fledger update-skill-assement user
-```
-
-### Help and additional Commands
-
-```sh
-fledger # Running base command or --help should respond with the optional fledger commands.
-```
+### Getting Started Code Base
+Fledger commands are still a work in progress. This is a rough working doc with more details. [[BetaTesters]]
 
 ## License
 
