@@ -11,7 +11,7 @@ Install Fledger
 pip install fledger
 ```
 
-Checkout a project in the language your interested in prepping for. Try to find a [OpenSSF](https://www.bestpractices.dev/en/projects) project that matches the domain experience or stack of the company. Create a clone of the project to checkout from.
+Checkout a project in the language you're interested in prepping for. Try to find a [OpenSSF](https://www.bestpractices.dev/en/projects) project that matches the domain experience or stack of the company. Create a clone of the project to checkout from.
 ```sh
 git checkout xxx project
 ```
