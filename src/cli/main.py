@@ -93,7 +93,7 @@ cell in the .md file, based on the record's Category and Sub-Category values. Re
 are dumped into the 'Uncategorized' category (not yet created)
 """
 @app.command()
-def update_skill_assessment(folder: str):
+def update_skill_assessment(folder: Optional[str] = typer.Argument(default=None)):
     "Updates skill assessment using standards passed."
 
     # routes are currently relative to src execution
