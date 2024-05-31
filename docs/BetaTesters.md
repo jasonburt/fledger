@@ -1,21 +1,26 @@
 Thank you for being a Tester!
 
-Download the repository. Command examples can be found in the main command folder of the cli.
+# Friction Log
+Before you start testing, please take notes. In the industry these are commonly called Friction logs. They don't have to be deep. Just what a sentance on what you testing followed by key steps. If something is great, or not great please make a note. We can't go deep on everything, so if you are an approved Beta Tester we would love to read the notes and you can share them directly and/or attach them to a bug.
 
+# Primary Testing : Using the Fledger Repository
+The default is to test new features from the main codebase or a branch that someone is working on.
+- Download the repository.
+- In the repository create a sym link or alias so you can call the command, to avoid conflicting with fledger, we recommend using the name bfledger.
+```alias bfledger='python cli/main.py'```
+- navigate to a different directory or open a new terminal
+- ```run bfledger --help ```
 
-# Legacy Steps
+Command examples can be found in the main command folder of the cli.
 
-Install Fledger
+# Running Tests
+Tests are in src/tests section. We start with snapshot tests for new commands and each optional input of the command, Snapshot testing is a type of “output comparison” where we test the command output and record output.
 
-```sh
-pip install fledger
-```
+- Navigate to root of the project
+- python -m pytest
+- This will run through the sanpshot tests for each command.
 
-Checkout a project in the language you're interested in prepping for. Try to find a [OpenSSF](https://www.bestpractices.dev/en/projects) project that matches the domain experience or stack of the company. Create a clone of the project to checkout from.
-```sh
-git checkout xxx project
-```
-
+# Commands
 ### Project Assessment
 Do an assessment scan of the project to see if its up to [OSS Standards](https://www.bestpractices.dev/en/criteria/0?details=true&rationale=true). You can copy the example file from this project.
 ```sh
