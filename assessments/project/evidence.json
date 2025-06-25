@@ -74,5 +74,381 @@
                 }
             ]
         ]
+    },
+    {
+        "name": "README_file_check",
+        "pattern": "README*",
+        "type": "code",
+        "category": "Basics",
+        "subcategory": "'FLOSS License'",
+        "description": "",
+        "records": [
+            [
+                {
+                    "path_and_file": "CONTRIBUTING.md",
+                    "location": "20",
+                    "code": "[README](https://github.com/jasonburt/fledger/README.md). Here are some",
+                    "tags": [],
+                    "usage": ""
+                },
+                {
+                    "path_and_file": "README.md",
+                    "location": "14",
+                    "code": "- Documentation (READMEs, Legal, Guides, CheatSheets)",
+                    "tags": [],
+                    "usage": ""
+                },
+                {
+                    "path_and_file": "assessments/project/overview_project_matrix.md",
+                    "location": "17",
+                    "code": "| Basics         | Documentation                                             | The project MUST provide basic documentation for the software produced by the project. {N/A justification}<br>The project MUST provide reference documentation that describes the external interface (both input and output) of the software produced by the project. {N/A justification}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | [README*](evidence.json#L=3)<ul><li>Records found: 1</li></ul> |       |",
+                    "tags": [
+                        "call"
+                    ],
+                    "usage": "call"
+                },
+                {
+                    "path_and_file": "assessments/project/overview_project_matrix.md",
+                    "location": "25",
+                    "code": "| Quality        | Automated Test Suite                                      | The project MUST use at least one automated test suite that is publicly released as FLOSS (this test suite may be maintained as a separate FLOSS project). The project MUST clearly show or document how to run the test suite(s) (e.g., via a continuous integration (CI) script or via documentation in files such as BUILD.md, README.md, or CONTRIBUTING.md)<br>A test suite SHOULD be invocable in a standard way for that language.<br>It is SUGGESTED that the test suite cover most (or ideally all) the code branches, input fields, and functionality.<br>It is SUGGESTED that the project implement continuous integration (where new or changed code is frequently integrated into a central code repository and automated tests are run on the result).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |                                                                |       |",
+                    "tags": [],
+                    "usage": ""
+                },
+                {
+                    "path_and_file": "assessments/user/evidence.json",
+                    "location": "3",
+                    "code": "        \"name\": \"README_file_check\",",
+                    "tags": [],
+                    "usage": ""
+                },
+                {
+                    "path_and_file": "assessments/user/evidence.json",
+                    "location": "4",
+                    "code": "        \"pattern\": \"README*\",",
+                    "tags": [],
+                    "usage": ""
+                },
+                {
+                    "path_and_file": "assessments/user/evidence.json",
+                    "location": "12",
+                    "code": "                    \"path_and_file\": \"README.md\",",
+                    "tags": [],
+                    "usage": ""
+                },
+                {
+                    "path_and_file": "assessments/user/overview_skills_and_project_matrix.md",
+                    "location": "6",
+                    "code": "fledger search 'README*' --search-type=file --save=user --category=Basics --subcategory=Documentation",
+                    "tags": [
+                        "call"
+                    ],
+                    "usage": "call"
+                },
+                {
+                    "path_and_file": "assessments/user/overview_skills_and_project_matrix.md",
+                    "location": "17",
+                    "code": "| Basics         | Documentation                                             | The project MUST provide basic documentation for the software produced by the project. {N/A justification}<br>The project MUST provide reference documentation that describes the external interface (both input and output) of the software produced by the project. {N/A justification}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | [README*](evidence.json#L=3)<ul><li>Records found: 1</li></ul> |       |",
+                    "tags": [
+                        "call"
+                    ],
+                    "usage": "call"
+                },
+                {
+                    "path_and_file": "assessments/user/overview_skills_and_project_matrix.md",
+                    "location": "25",
+                    "code": "| Quality        | Automated Test Suite                                      | The project MUST use at least one automated test suite that is publicly released as FLOSS (this test suite may be maintained as a separate FLOSS project). The project MUST clearly show or document how to run the test suite(s) (e.g., via a continuous integration (CI) script or via documentation in files such as BUILD.md, README.md, or CONTRIBUTING.md)<br>A test suite SHOULD be invocable in a standard way for that language.<br>It is SUGGESTED that the test suite cover most (or ideally all) the code branches, input fields, and functionality.<br>It is SUGGESTED that the project implement continuous integration (where new or changed code is frequently integrated into a central code repository and automated tests are run on the result).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |                                                                |       |",
+                    "tags": [],
+                    "usage": ""
+                },
+                {
+                    "path_and_file": "docs/BetaTesters.md",
+                    "location": "28",
+                    "code": "fledger search 'README*' --search-type=file --save=project --category=Basics --subcategory=Documentation",
+                    "tags": [
+                        "call"
+                    ],
+                    "usage": "call"
+                },
+                {
+                    "path_and_file": "docs/BetaTesters.md",
+                    "location": "40",
+                    "code": "fledger search 'README*' --search-type=file --save=user --category=Basics --subcategory=Documentation",
+                    "tags": [
+                        "call"
+                    ],
+                    "usage": "call"
+                },
+                {
+                    "path_and_file": "docs/advice/SECURITY_CATEGORY.md",
+                    "location": "40",
+                    "code": "- Did you read the README?",
+                    "tags": [],
+                    "usage": ""
+                },
+                {
+                    "path_and_file": "pyproject.toml",
+                    "location": "11",
+                    "code": "readme = \"README.md\"",
+                    "tags": [
+                        "call"
+                    ],
+                    "usage": "call"
+                },
+                {
+                    "path_and_file": "pyproject.toml",
+                    "location": "34",
+                    "code": "Documentation = \"https://github.com/jasonburt/fledger/blob/main/README.md\"",
+                    "tags": [
+                        "call"
+                    ],
+                    "usage": "call"
+                },
+                {
+                    "path_and_file": "rubric/general/README_file_check.json",
+                    "location": "2",
+                    "code": "    \"name\": \"README_file_check\",",
+                    "tags": [],
+                    "usage": ""
+                },
+                {
+                    "path_and_file": "rubric/general/README_file_check.json",
+                    "location": "3",
+                    "code": "    \"pattern\": \"README*\",",
+                    "tags": [],
+                    "usage": ""
+                },
+                {
+                    "path_and_file": "rubric/general/README_file_check.json",
+                    "location": "9",
+                    "code": "                \"path_and_file\": \"README.md\",",
+                    "tags": [],
+                    "usage": ""
+                },
+                {
+                    "path_and_file": "src/README.md",
+                    "location": "1",
+                    "code": "# README TEST",
+                    "tags": [],
+                    "usage": ""
+                },
+                {
+                    "path_and_file": "src/README.md",
+                    "location": "2",
+                    "code": "Testing README, will restructure later",
+                    "tags": [],
+                    "usage": ""
+                },
+                {
+                    "path_and_file": "src/assessments/project/evidence.json",
+                    "location": "3",
+                    "code": "        \"name\": \"README_file_check\",",
+                    "tags": [],
+                    "usage": ""
+                },
+                {
+                    "path_and_file": "src/assessments/project/evidence.json",
+                    "location": "4",
+                    "code": "        \"pattern\": \"README*\",",
+                    "tags": [],
+                    "usage": ""
+                },
+                {
+                    "path_and_file": "src/assessments/project/evidence.json",
+                    "location": "12",
+                    "code": "                    \"path_and_file\": \"README.md\",",
+                    "tags": [],
+                    "usage": ""
+                },
+                {
+                    "path_and_file": "src/assessments/project/evidence.json",
+                    "location": "24",
+                    "code": "        \"name\": \"README_file_check\",",
+                    "tags": [],
+                    "usage": ""
+                },
+                {
+                    "path_and_file": "src/assessments/project/evidence.json",
+                    "location": "25",
+                    "code": "        \"pattern\": \"README*\",",
+                    "tags": [],
+                    "usage": ""
+                },
+                {
+                    "path_and_file": "src/assessments/project/evidence.json",
+                    "location": "33",
+                    "code": "                    \"path_and_file\": \"README.md\",",
+                    "tags": [],
+                    "usage": ""
+                },
+                {
+                    "path_and_file": "src/assessments/user/overview_skills_and_project_matrix.md",
+                    "location": "6",
+                    "code": "fledger search 'README*' --search-type=file --save=user",
+                    "tags": [
+                        "call"
+                    ],
+                    "usage": "call"
+                },
+                {
+                    "path_and_file": "src/assessments/user/overview_skills_and_project_matrix.md",
+                    "location": "17",
+                    "code": "| Basics | Documentation | The project MUST provide basic documentation for the software produced by the project. {N/A justification}<br>The project MUST provide reference documentation that describes the external interface (both input and output) of the software produced by the project. {N/A justification} | [README*](evidence.json#L=3)<ul><li>Records found: 1</li></ul> | <ul><li>Term matched: **'documentation'**</li></ul>",
+                    "tags": [
+                        "call"
+                    ],
+                    "usage": "call"
+                },
+                {
+                    "path_and_file": "src/assessments/user/overview_skills_and_project_matrix.md",
+                    "location": "23",
+                    "code": "| Quality | Automated Test Suite | The project MUST use at least one automated test suite that is publicly released as FLOSS (this test suite may be maintained as a separate FLOSS project). The project MUST clearly show or document how to run the test suite(s) (e.g., via a continuous integration (CI) script or via documentation in files such as BUILD.md, README.md, or CONTRIBUTING.md)<br>A test suite SHOULD be invocable in a standard way for that language.<br>It is SUGGESTED that the test suite cover most (or ideally all) the code branches, input fields, and functionality.<br>It is SUGGESTED that the project implement continuous integration (where new or changed code is frequently integrated into a central code repository and automated tests are run on the result). |  | <ul><li>Term matched: **'documentation'**</li></ul>",
+                    "tags": [],
+                    "usage": ""
+                },
+                {
+                    "path_and_file": "src/cli/main.py",
+                    "location": "27",
+                    "code": "        f\"Hello! Welcome to fledger! To get started read the README for a list of example and connect with the project at https://github.com/jasonburt/fledger.\"",
+                    "tags": [],
+                    "usage": ""
+                },
+                {
+                    "path_and_file": "src/cli/main.py",
+                    "location": "205",
+                    "code": "# python src/cli/main.py search 'README*' --search-type=file --save=project --category=Basics --subcategory=Documentation",
+                    "tags": [
+                        "call"
+                    ],
+                    "usage": "call"
+                },
+                {
+                    "path_and_file": "src/cli/main.py",
+                    "location": "360",
+                    "code": "# python cli/main.py search 'README' --repo-path=Your/Cool/Repo --search-type=file",
+                    "tags": [
+                        "call"
+                    ],
+                    "usage": "call"
+                },
+                {
+                    "path_and_file": "src/cli/main.py",
+                    "location": "361",
+                    "code": "# python cli/main.py search 'README*' --search-type=file",
+                    "tags": [
+                        "call"
+                    ],
+                    "usage": "call"
+                },
+                {
+                    "path_and_file": "src/cli/main.py",
+                    "location": "362",
+                    "code": "# python cli/main.py search 'README*' --search-type=file --save",
+                    "tags": [
+                        "call"
+                    ],
+                    "usage": "call"
+                },
+                {
+                    "path_and_file": "src/cli/main.py",
+                    "location": "363",
+                    "code": "# python cli/main.py search 'README*' --search-type=file --save=user --category=Basics --subcategory=Documentation",
+                    "tags": [
+                        "call"
+                    ],
+                    "usage": "call"
+                },
+                {
+                    "path_and_file": "src/cli/templates/job_matrix_overview.md",
+                    "location": "9",
+                    "code": "fledger search 'README*' --search-type=file --save=user",
+                    "tags": [
+                        "call"
+                    ],
+                    "usage": "call"
+                },
+                {
+                    "path_and_file": "src/cli/templates/project_matrix_overview.md",
+                    "location": "6",
+                    "code": "fledger search 'README*' --search-type=file --save=project --category=Basics --subcategory=Documentation",
+                    "tags": [
+                        "call"
+                    ],
+                    "usage": "call"
+                },
+                {
+                    "path_and_file": "src/cli/templates/skill_matrix_overview.md",
+                    "location": "6",
+                    "code": "fledger search 'README*' --search-type=file --save=user --category=Basics --subcategory=Documentation",
+                    "tags": [
+                        "call"
+                    ],
+                    "usage": "call"
+                },
+                {
+                    "path_and_file": "src/tests/data/OpenSSF.json",
+                    "location": "117",
+                    "code": "            \"requirements\": [\"The project MUST use at least one automated test suite that is publicly released as FLOSS (this test suite may be maintained as a separate FLOSS project). The project MUST clearly show or document how to run the test suite(s) (e.g., via a continuous integration (CI) script or via documentation in files such as BUILD.md, README.md, or CONTRIBUTING.md)\",",
+                    "tags": [
+                        "test"
+                    ],
+                    "usage": "test"
+                },
+                {
+                    "path_and_file": "src/tests/test_cli_commands.py",
+                    "location": "16",
+                    "code": "    # python src/cli/main.py search \"README*\" --search-type=file",
+                    "tags": [
+                        "call",
+                        "test"
+                    ],
+                    "usage": "test"
+                },
+                {
+                    "path_and_file": "src/tests/test_cli_commands.py",
+                    "location": "17",
+                    "code": "    result = runner.invoke(app, [\"search\", \"README*\", \"--search-type=file\"])",
+                    "tags": [
+                        "call",
+                        "test"
+                    ],
+                    "usage": "test"
+                },
+                {
+                    "path_and_file": "src/tests/test_cli_commands.py",
+                    "location": "19",
+                    "code": "    assert '\"path_and_file\": \"README.md\"' in result.stdout",
+                    "tags": [
+                        "test"
+                    ],
+                    "usage": "test"
+                },
+                {
+                    "path_and_file": "src/tests/test_cli_commands.py",
+                    "location": "31",
+                    "code": "    result = runner.invoke(app, [\"search\", \"README*\", \"--search-type=code\",\"--save=project\",\"--category=Basics\",\"--subcategory='FLOSS License'\"])",
+                    "tags": [
+                        "call",
+                        "test"
+                    ],
+                    "usage": "test"
+                },
+                {
+                    "path_and_file": "src/tests/test_cli_commands.py",
+                    "location": "77",
+                    "code": "        assert \"README*\" in overview_full_file",
+                    "tags": [
+                        "test"
+                    ],
+                    "usage": "test"
+                },
+                {
+                    "path_and_file": "standards/OpenSSF.json",
+                    "location": "117",
+                    "code": "            \"requirements\": [\"The project MUST use at least one automated test suite that is publicly released as FLOSS (this test suite may be maintained as a separate FLOSS project). The project MUST clearly show or document how to run the test suite(s) (e.g., via a continuous integration (CI) script or via documentation in files such as BUILD.md, README.md, or CONTRIBUTING.md)\",",
+                    "tags": [],
+                    "usage": ""
+                }
+            ]
+        ]
     }
 ]
