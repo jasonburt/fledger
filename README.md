@@ -23,7 +23,7 @@ Below are a number of categories, each category has an overview, interview guide
 
 Below are a set of Categories written in partnership with Industry experts, pick a category you are interested in to get started.
 
-- [[SECURITY_CATEGORY]] - v1
+- [Security Category](docs/advice/SECURITY_CATEGORY.md) - v1
 - Usability - coming soon
 - Accessibility - coming soon
 - Quality - coming soon
@@ -32,7 +32,7 @@ Below are a set of Categories written in partnership with Industry experts, pick
 Fledger can be used to help onboard, train, and support team members. More to come. : )
 
 ### Getting Started Code Base
-Fledger commands are still a work in progress. This is a rough working doc with more details. [[BetaTesters]]
+Fledger commands are still a work in progress. This is a rough working doc with more details. [BetaTesters](/docs/BetaTesters.md)
 
 ## License
 
